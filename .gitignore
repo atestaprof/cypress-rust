@@ -1,0 +1,15 @@
+# Build artifacts de Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Archivos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Archivos temporales de agentes/herramientas
+.antigravity/
+.agy/
+*.log

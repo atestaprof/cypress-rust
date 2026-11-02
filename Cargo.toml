@@ -1,0 +1,18 @@
+[package]
+name = "espresso-rs"
+version = "0.1.0"
+edition = "2021"
+description = "Safe, WASM-compatible Rust reimplementation of the Espresso heuristic two-level logic minimizer"
+license = "MIT"
+
+# `rlib` for Rust consumers / tests, `cdylib` for wasm32-unknown-unknown.
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[features]
+default = []
+wasm = ["dep:wasm-bindgen"]
+
+# Zero runtime dependencies by default; `wasm-bindgen` is opt-in via `--features wasm`.
+[dependencies]
+wasm-bindgen = { version = "0.2", optional = true }
