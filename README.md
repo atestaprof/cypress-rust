@@ -113,3 +113,26 @@ wasm-pack build --target web -- --features wasm
 ./serve.sh
 ```
 Luego abre `http://localhost:8080/www/index.html` en tu navegador (puedes pasar otro puerto como argumento: `./serve.sh 3000`).
+
+---
+
+## Despliegue a Producción
+
+Para distribuir la aplicación web como un sitio estático autónomo (sin necesidad de compilar Rust por parte de los usuarios finales), genera la carpeta autocontenida `dist/` utilizando el script correspondiente a tu sistema operativo:
+
+### Linux / macOS
+```bash
+./build_dist.sh
+```
+
+### Windows (PowerShell)
+```powershell
+.\build_dist.ps1
+```
+
+Ambos scripts compilan el binario WebAssembly optimizado para tamaño (`opt-level = "s"`, `lto = true`), copian la interfaz web y los artefactos (`espresso_rs.js` y `espresso_rs_bg.wasm`) dentro de `dist/` y reescriben las importaciones a rutas relativas (`./pkg/`).
+
+### Publicar en GitHub Pages
+1. Genera `dist/` ejecutando `./build_dist.sh` o `.\build_dist.ps1`.
+2. Sube el contenido de la carpeta `dist/` a la rama `gh-pages` (o configura **GitHub Pages** desde Actions / rama estática apuntando al contenido de `dist/`).
+3. Al abrir la URL publicada, toda la síntesis, minimización y generación JEDEC se ejecutará 100% en el navegador del estudiante mediante WebAssembly.

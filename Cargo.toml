@@ -16,3 +16,7 @@ wasm = ["dep:wasm-bindgen"]
 # Zero runtime dependencies by default; `wasm-bindgen` is opt-in via `--features wasm`.
 [dependencies]
 wasm-bindgen = { version = "0.2", optional = true }
+
+[profile.release]
+opt-level = "s"
+lto = true
