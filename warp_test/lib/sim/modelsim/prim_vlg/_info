@@ -1,0 +1,574 @@
+m255
+o
+d/vobs/synth/lib/sim/modelsim
+vc15g04serdes
+IT`T?KWbU28Vb`I=?aFk2D2
+w1026434127
+F/vobs/synth/lib/common/c15g04serdes.v
+OE;L;5.4d;17
+L0 11
+V0fGeAKmgXZ]]Aoo4_7gaS3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vc16v8m
+I1bHSFnMVa7?;WC>n[[YaH2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 34
+VmYnA_[?L495IY43>]cNhz2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc20g10m
+I[<X1T9;=do=Pbb?h@gj431
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 217
+VLfBKbV5nO7QaR1Rb;CmZC1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc20m
+IZiLGYVY9bZna238@=j@S[0
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 388
+VjQf6_09VOi;fGoNXeB1^73
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc20r
+IGQkXTEjMI5cXQh@zNd16b2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 442
+V2YeMb]UTFAH?[P9_UWaB33
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc20ra10m
+II>k1a@ae51mM]280nkelN3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 556
+VIDIdl]f=im:VP8DLe5WhD1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc20tri
+IO`RL>0KLTEz]7oIZ04I=l3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 862
+Vj3k6B`<__hJd<CkBl8UG62
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc22v10m
+I^CH7D2T3kP9^X3K0I_OhC2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 896
+V^Bj^Va=EM5[CkH@zDQ?en3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc25g01serdes
+InQFk=z7I^JNRh`W^39b2P1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 10248
+V1LZPm9FE0a`6;B1?@h[6G3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc2gcor
+IFAAz3nG?:d7e?>gF;8f3J1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 9789
+Va]8@^V1XP]eN<oziTg;Z=2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc2gffo
+I]3Sc_=Z0;c4^Wa02CGjHK2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 9641
+V7Yo6=15=75VW@@]=S4FkM0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc2gserdes
+IUXh`FeHTfCjYLalIb3d;[1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 10723
+VGk@eIU[I9X2UJ<ln2BM@c2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc331ckmx
+IdhdJ1n>4g:MI1SKLZhIk=2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 1173
+VniHYmFfcIYe3[h>]N3SQ?3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc331m
+I:]=9c^J4]oM6Xo`fORYk?0
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 1261
+VU;dJ4R16gFkLCBHk`0h3?2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc335ckmx
+INLn?491fFHkAFdI81[C@S2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 1710
+VQz_5jb[iUgT1nkolZOJB30
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc335h
+IU<F^PmZljDi3TcR9nTQBS2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 1788
+VEb>6eR8ld^eaR=FPLC0YL1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc335ireg
+IT^?fJl0C0FBVEc<aY0JV72
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 1923
+VI58<_NzJG<WmA42WoD1if2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc335m
+I=boCA:QYdfljc6i[=1`Ph1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2056
+VmiRg^0i6Uj1gDIP>?7=E71
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xckmx
+I4Kmm8=GY1B8D?]o^K2O@J2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2359
+V`kCi@]AaN2KA8og:88Df@3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xexin
+IVNKXFJV0ARU9jAc>9NQ:;2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2409
+VQb_S9A?Momffa1l0MBn[:1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xexp
+ITBjHFXoSJBR3EWJYzgU2A2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2458
+V[L<dbHz[hCPhHBSS;1ZlZ1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xh
+IRkUI:V_9MIXE_N;7@jDK:3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2507
+VgmkB2bHC88EnI:Ho;Q]103
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xin
+I1N?[dzjSdF1hBZ?zdN0IU2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2796
+VOLF25J_8l8IKmQbF=XLMO2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xm
+I3<h;DDl^IFj9ImZD;g]aW2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 2837
+Vc?oD5MUAYP8@E>4?YGG=>3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc34xpia
+IjGg9k3NaJ;?bJJfj7l@D^2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3164
+VjKkaDfZn44W5<O4=OW;j[0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37kinp
+Inj3Wg<0R<fV?MK55j3A^b1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3859
+V:kQ30eKjGj;cdZYAGM>L62
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37km
+I]MCRhi@4mD7?^JoPnXA5>0
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3989
+VMcV3[=9?kH=BoZnS9^=oB0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37kmux
+IL_H8KDPz4ckUF_1bea[ho2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 4082
+VTcC@Dg<d]oNXPRM<Xoz8D0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37koreg
+IE3Oi6cN8@f_C?3HZ3f7So3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 4098
+V`d0VG`OOLMokg`ONkD0zF2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37xclk
+IUomm=R@J3X7oXh>Bl[mOd2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3205
+V[M34NJAHM6G?]oG:J<G[f0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37xinp
+I2]P2n:CCQ>8A2]nhzezjN3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3244
+VCjV@LMA@hhj9?3?g?h[:g0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37xm
+I^;7F2M:gTLQB5SWl:^Li@1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3392
+VCgH[bd<L0nZB85OJIK:nO1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37xmux
+IEXhMKz`Y<?[TaRLS]l4TS0
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3490
+VN1XJ5i0BiB9]]NZj7;ON71
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37xoreg
+IAThWgVk`g;3B_Uh1GoKaY1
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3531
+V]]UD:`hIDkIDUlz:deV;V3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc37xprod
+IhJzA9C81988GhW3N>^ko:3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 3822
+V[`=Sag;VFIkL9UIo>9@Zf3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc39kcf
+Ia2A:3EE^cFGDBH2iea;:g3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 4451
+V@Zn6Wz=5JWA<cBdmF]D9m3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc39kck
+Ii:Q2lX7H9n6B[nXSFI9?X0
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 5513
+V4jCaPZTWVVf>@]eSmi`Jh0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc39kcm
+I4=fKFl8`IFfaBnImeMQZ53
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 6156
+VGE_LeCGkdeBNYIXHGI7OS1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc39kcr
+I4N^EVzO29Teh15Jd@3aMK2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 7837
+VZd9;ZRJg:o`?gm6e5^TO]3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc39kio
+IU7I^n;0dcna:U5AGXLEUI2
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 8694
+V>;dJnPa<NzWWW=P`>Oo4[1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vc39kmc
+IbA@PaSCS`PP^ngZUU3Zhh3
+w1023768655
+F/vobs/synth/lib/sim/postsynth/vlg/primitive.vlg
+OE;L;5.4d;17
+L0 9268
+V>4TiIkGMF?dQ=_]aef;hG0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/sim/postsynth/vlg
+vcy_6gserdes_core
+ImXRCCU8dV4cdNY4cYRT943
+w1026434127
+F/vobs/synth/lib/common/c15g04serdes.v
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L1 22
+V]YibOLRMjl20CHAQaeKgi3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_9294
+ITPDe7EL]NRIn;IGBPJEEJ2
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 6016
+Vz6kS9Dz;<410`RGe;;bh>1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_buff
+IGJ2SdZZ>Ge>jVNY[Jd0C^0
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 5584
+VDo:fjalEVlfdGeCVQzT;a2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_decoded_value
+IF@7dZQQJY0fKTPMhVXWf90
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 3219
+Vn9W4j2adV@b8fbjA9@g6i3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_decoder
+I;V@T=[U7<MFWjKhFoTz6_2
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 2881
+VY3Kh^YAObARFT=I<b:NCI2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_dpram10x13
+IGALX3bZcA3`Di4^Z8z?]n0
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 5940
+VBCfFK@0]HI=]9>oWAFzfj1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_e_buffer
+Imk0>YQcj45PXbfiWN9MV@1
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 4343
+V`h`0bXl=Qoz9`dKznVoLF2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_enc_hl
+IGz:Y?a;;>XkB5^F7=lmg03
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 1648
+V[NJDHgI0;X_^DcogCnzgn3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_encodecmd
+IAcH5:CzcM7lhFda0P>oEG3
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 2265
+Vz2KhjZnb2T9MS5]fV7^2H1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_encodecore
+IKX8_iP@m1?m<?GME]k6Km0
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 1348
+ViY[:_59bXn8;@zDYGnKJT3
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_encodedata
+Inn3LboaNj_DQ0e::KHB8c2
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 1712
+Viz>em39<Pc;fP2EbV>`8C0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_fifo_9294
+Ih=N<]O>;4DS45FzAI2V8L1
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 1200
+VT=>B`6TGX9^X1XM8cg9_Z2
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_fifo_control
+I=n`bXc14Yl3aRVo_PY6Y23
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 5629
+VzWLJ^^CmI43^51e5j@5Y70
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_framer
+IzRO6YZCTa242Ahn;ng14Y2
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 2647
+VT3Ylz[4Q^Qe8Q38i90=6R0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_rxpll_cdr
+IMzD@J?48hJfCKh1W<SjZ02
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 2333
+VJIo<a0dgNChCklE]U1Il[0
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common
+vcy_txmodes
+IHTfOUYVH1KH^VbY:go65E3
+w996250565
+F/vobs/synth/lib/common/cy_9294.v
+OE;L;5.4d;17
+L0 1524
+VYd6zZgUiZZ2Vfli5Zef=z1
+r1
+31
+o-quiet -work prim_vlg +incdir+/vobs/synth/lib/common

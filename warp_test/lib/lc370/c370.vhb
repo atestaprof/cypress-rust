@@ -1,0 +1,902 @@
+--
+--	Copyright Cypress Semiconductor Corporation, 1994,1995,1996
+--	  as an unpublished work.
+--
+--------------------------------------------------------------------------
+--		Components for Generic RTL.				--
+--------------------------------------------------------------------------
+
+PACKAGE rtlpkg IS
+
+component cy_bufoe
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: inout x01z;
+	    yfb	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_bufoe : component is bufoe_type;
+
+component cy_dltch
+    port   (d	: in bit;
+	    e	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_dltch : component is dltch_type;
+
+component cy_dff
+    port   (d	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_dff : component is dff_type;
+
+component cy_xdff
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_jkff
+    port   (j	: in bit;
+	    k	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_buf
+    port   (x	: in bit;
+	    y	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_buf : component is buf_type;
+
+component cy_srlch
+    port   (s	: in bit;
+	    r	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_srff
+    port   (s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_srff : component is srff_type;
+
+component cy_dsrff
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_dsrff : component is dsrff_type;
+
+component cy_tsrff
+    port   (t	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_tsrff : component is tsrff_type;
+
+component cy_tff
+    port   (t	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_tff : component is tff_type;
+
+component cy_xbuf
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_triout
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: out x01z);
+end component;
+
+    attribute atomic_rtl of cy_triout : component is triout_type;
+
+    component cy_idff
+	port(
+	    d_i   : in bit;		-- D input to input register.
+	    clk_i : in bit;		-- Positive edge, input reg, clock.
+	    q_i   : out bit		-- Output from input register.
+	);
+    end component;
+    attribute atomic_rtl of cy_idff : component is idff_type;
+
+component cy_dsrffe
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    e	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_c39kcarry
+    port   (SelIn	: in bit;
+	    Cpt0	: in bit;
+	    Cpt1	: in bit;
+	    SelOut	: out bit);
+end component;
+
+component cy_c39kxor
+    port   (SIn 	: in bit;
+	    PtmPts	: in bit;
+	    XorOut	: out bit);
+end component;
+
+component cy_c39kmultiply
+    generic(IsSigned	: BOOLEAN := FALSE;
+	DataWidthA	: positive;
+	DataWidthB	: positive;
+	DataWidthP	: positive;
+
+	Hint		: goal_type := memory);
+
+    port   (Data_A	: in  bit_vector(DataWidthA-1 downto 0);
+	    Data_B	: in  bit_vector(DataWidthB-1 downto 0);
+	    Product	: out bit_vector(DataWidthP-1 downto 0));
+end component;
+
+    attribute atomic_rtl of cy_c39kmultiply : component is not_allowed_type;
+
+TYPE fdbk_source IS (DIRECT, CLOCK_TREE, EXTERNAL);
+
+component cy_c39kpll
+    generic(feedback	: fdbk_source	:= DIRECT;
+	    multiply	: positive	:= 1;
+	    gclk0_phase	: natural	:= 0;
+	    gclk0_divide: positive	:= 1;
+	    gclk1_phase	: natural	:= 0;
+	    gclk1_divide: positive	:= 1;
+	    gclk2_phase	: natural	:= 0;
+	    gclk2_divide: positive	:= 1;
+	    gclk3_phase	: natural	:= 0;
+	    gclk3_divide: positive	:= 1;
+	    input_freq	: natural	:= 0;
+	    ext_fdbk_delay_ps	: natural	:= 0;
+	    ext_fdbk_port_out	: string:="");
+    port   (pll_in	: in  bit;
+	    ext_fdbk	: in  bit	:= '0';
+	    lock_detect	: out bit;
+	    gclk0	: out bit;
+	    gclk1	: out bit;
+	    gclk2	: out bit;
+	    gclk3	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_c39kpll : component is not_allowed_type;
+
+component cy_25g01serdes
+
+    port   (txd		: in  bit_vector (15 downto 0) ;
+	    fifo_rstb	: in  bit ;
+	    loop_time	: in  bit ;
+	    diagloop	: in  bit ;
+	    loopa	: in  bit ;
+	    lineloop	: in  bit ;
+	    resetb	: in  bit ;
+	    pwrdnb	: in  bit ;
+	    lockrefb	: in  bit ;
+	    refclk_n	: in  bit ;
+	    refclk_p	: in  bit ;
+	    serial_in_n : in  bit ;
+	    serial_in_p	: in  bit ;
+	    sd		: in  bit ;
+	    serial_out_n: out bit ;
+	    serial_out_p: out bit ;
+	    fifo_err	: out bit ;
+	    txclk	: out bit ;
+	    rxd		: out bit_vector (15 downto 0) ;
+	    rxclk	: out bit ;
+	    lfib	: out bit );
+
+end component;
+
+    attribute atomic_rtl of cy_25g01serdes : component is not_allowed_type;
+
+component cy_15g04serdes
+
+    port (  txda		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdb		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdc		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdd		: in	bit_vector(7 downto 0) := (others => '0');
+	    txpera		: out	bit;
+	    txperb		: out	bit;
+	    txperc		: out	bit;
+	    txperd		: out	bit;
+	    txcta		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctb		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctc		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctd		: in	bit_vector(1 downto 0) := (others => '0');
+
+	    txclka		: in	bit;
+
+	    txclko_p		: out	bit;
+
+	    txrate		: in	bit;
+	    txmode		: in	bit_vector(1 downto 0);
+	    txcksel		: in	bit;
+	    txrstb		: in	bit;
+
+	    rxda		: out	bit_vector(7 downto 0);
+	    rxdb		: out	bit_vector(7 downto 0);
+	    rxdc		: out	bit_vector(7 downto 0);
+	    rxdd		: out	bit_vector(7 downto 0);
+	    rxsta		: out	bit_vector(2 downto 0);
+	    rxstb		: out	bit_vector(2 downto 0);
+	    rxstc		: out	bit_vector(2 downto 0);
+	    rxstd		: out	bit_vector(2 downto 0);
+
+	    rxrate		: in	bit;
+	    rfen		: in	bit;
+	    rxmode		: in	bit_vector(1 downto 0);
+	    rxcksel		: in	bit;
+	    framchar		: in	bit;
+	    rfmode		: in	bit;
+	    decmode		: in	bit;
+
+	    spdsel		: in	bit;
+	    rxclka_p		: out	bit;
+	    rxclkb_p		: inout	bit;
+	    rxclkc_p		: out	bit;
+	    rxclkd_p		: inout	bit;
+
+	    refclk_p		: in	bit;
+	    refclk_n		: in	bit;
+	    serial_outa1_p	: out	bit;
+	    serial_outb1_p	: out	bit;
+	    serial_outc1_p	: out	bit;
+	    serial_outd1_p	: out	bit;
+	    serial_outa2_p	: out	bit;
+	    serial_outb2_p	: out	bit;
+	    serial_outc2_p	: out	bit;
+	    serial_outd2_p	: out	bit;
+	    serial_ina1_p	: in	bit;
+	    serial_inb1_p	: in	bit;
+	    serial_inc1_p	: in	bit;
+	    serial_ind1_p	: in	bit;
+	    serial_ina2_p	: in	bit;
+	    serial_inb2_p	: in	bit;
+	    serial_inc2_p	: in	bit;
+	    serial_ind2_p	: in	bit;
+	    serial_outa1_n	: out	bit;
+	    serial_outb1_n	: out	bit;
+	    serial_outc1_n	: out	bit;
+	    serial_outd1_n	: out	bit;
+	    serial_outa2_n	: out	bit;
+	    serial_outb2_n	: out	bit;
+	    serial_outc2_n	: out	bit;
+	    serial_outd2_n	: out	bit;
+	    serial_ina1_n	: in	bit;
+	    serial_inb1_n	: in	bit;
+	    serial_inc1_n	: in	bit;
+	    serial_ind1_n	: in	bit;
+	    serial_ina2_n	: in	bit;
+	    serial_inb2_n	: in	bit;
+	    serial_inc2_n	: in	bit;
+	    serial_ind2_n	: in	bit;
+	    insela		: in	bit;
+	    inselb		: in	bit;
+	    inselc		: in	bit;
+	    inseld		: in	bit;
+	    sdasel		: in	bit;
+	    lpen		: in	bit;
+	    oele		: in	bit;
+	    bistle		: in	bit;
+	    rxle		: in	bit;
+	    boe			: in	bit_vector(7 downto 0);
+	    bondst		: inout	bit_vector(1 downto 0);
+	    masterb		: in	bit;
+	    bond_all		: inout	bit;
+	    bond_inhb		: in	bit;
+	    lfiab		: out	bit;
+	    lfibb		: out	bit;
+	    lficb		: out	bit;
+	    lfidb		: out	bit;
+	    trstzb		: in	bit);
+
+end component;
+
+    attribute atomic_rtl of cy_15g04serdes : component is not_allowed_type;
+
+component cy_c39kdualport
+    generic(DataWidth	: positive := 8;
+	AddressWidth	: positive := 11;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdataA_reg	: BOOLEAN  := FALSE;
+	outdataB_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (DIn_A	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    DIn_B	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    Addr_A	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    Addr_B	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    WEA	        : in  bit := '0';
+	    WEB	        : in  bit := '0';
+	    InClk_A	: in  bit := '0';
+	    OutClk_A	: in  bit := '0';
+	    OutRegA_AR  : in  bit := '0';
+	    InClk_B	: in  bit := '0';
+	    OutClk_B	: in  bit := '0';
+	    OutRegB_AR  : in  bit := '0';
+	    Addr_matchb	: out bit;
+	    DOut_A	: out bit_vector(DataWidth-1 downto 0); 
+	    DOut_B	: out bit_vector(DataWidth-1 downto 0));
+end component;
+
+    attribute atomic_rtl of cy_c39kdualport : component is not_allowed_type;
+
+component cy_c39kfifo
+    generic(DataWidth	: positive := 8;
+	NumWords	: positive := 512;
+	PAFE_Distance	: natural  := 0);
+    port   (DIn	        : in  bit_vector(DataWidth-1 downto 0);
+	    DOut	: out bit_vector(DataWidth-1 downto 0);
+	    ENR	        : in bit := '0';
+	    ENW   	: in bit := '0';
+	    CKR         : in bit := '0';
+	    CKW         : in bit := '0';
+	    MRb	        : in bit := '0';
+	    EFb	        : out bit;
+	    HFb	        : out bit;
+	    PAFEb	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_c39kfifo : component is not_allowed_type;
+
+component cy_c39ksingleport
+    generic(DataWidth  	: positive := 8;
+	AddressWidth	: positive := 13;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdata_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (Din		: in bit_vector(DataWidth-1 downto 0):=(others => '0');
+	    Addr	: in bit_vector(AddressWidth-1 downto 0);
+	    WE		: in bit := '0';
+	    InClk	: in bit := '0';
+	    OutClk	: in bit := '0';
+	    OutReg_AR	: in bit := '0';
+	    DOut	: out bit_vector(DataWidth-1 downto 0));
+end component;
+
+    attribute atomic_rtl of cy_c39ksingleport : component is not_allowed_type;
+
+END rtlpkg;
+
+--------------------------------------------------------------------------
+--      Force synthesis to use the device library.
+--------------------------------------------------------------------------
+use work.rtlpkg.all;
+
+--------------------------------------------------------------------------
+--      Here are the device entitys.
+--------------------------------------------------------------------------
+
+entity c371 is
+    port (
+	pin2	: inout x01z;  
+	pin3	: inout x01z;  
+	pin4	: inout x01z;
+	pin5	: inout x01z;
+	pin6	: inout x01z;
+	pin7	: inout x01z;
+	pin8	: inout x01z;
+	pin9	: inout x01z;
+	pin10	: in    bit;
+	pin11	: in    bit;
+	pin13	: in    bit;
+	pin14	: inout x01z;
+	pin15	: inout x01z;
+	pin16	: inout x01z;    
+	pin17	: inout x01z;
+	pin18	: inout x01z;
+	pin19	: inout x01z;
+	pin20	: inout x01z;
+	pin21	: inout x01z;
+	pin23	: inout x01z;
+	pin24	: inout x01z;
+	pin25	: inout x01z;
+	pin26	: inout x01z;
+	pin27	: inout x01z;
+	pin28	: inout x01z;
+	pin29	: inout x01z;
+	pin30	: inout x01z;
+	pin31	: inout x01z;  
+	pin32	: in    bit;
+	pin33	: in    bit;
+	pin35	: in    bit;
+	pin36	: inout x01z;    
+	pin37	: inout x01z;
+	pin38	: inout x01z;
+	pin39	: inout x01z;
+	pin40	: inout x01z;
+	pin41	: inout x01z;
+	pin42	: inout x01z;
+	pin43	: inout x01z);
+end C371;
+
+entity c372 is
+    port (
+	pin2	: inout x01z;  
+	pin3	: inout x01z;  
+	pin4	: inout x01z;
+	pin5	: inout x01z;
+	pin6	: inout x01z;
+	pin7	: inout x01z;
+	pin8	: inout x01z;
+	pin9	: inout x01z;
+	pin10	: in    bit;
+	pin11	: in    bit;
+	pin13	: in    bit;
+	pin14	: inout x01z;
+	pin15	: inout x01z;
+	pin16	: inout x01z;    
+	pin17	: inout x01z;
+	pin18	: inout x01z;
+	pin19	: inout x01z;
+	pin20	: inout x01z;
+	pin21	: inout x01z;
+	pin23	: inout x01z;
+	pin24	: inout x01z;
+	pin25	: inout x01z;
+	pin26	: inout x01z;
+	pin27	: inout x01z;
+	pin28	: inout x01z;
+	pin29	: inout x01z;
+	pin30	: inout x01z;
+	pin31	: inout x01z;  
+	pin32	: in    bit;
+	pin33	: in    bit;
+	pin35	: in    bit;
+	pin36	: inout x01z;    
+	pin37	: inout x01z;
+	pin38	: inout x01z;
+	pin39	: inout x01z;
+	pin40	: inout x01z;
+	pin41	: inout x01z;
+	pin42	: inout x01z;
+	pin43	: inout x01z);
+end C372;
+
+entity c373 is
+    port (
+	pin3	: inout x01z;  
+	pin4	: inout x01z;
+	pin5	: inout x01z;
+	pin6	: inout x01z;
+	pin7	: inout x01z;
+	pin8	: inout x01z;
+	pin9	: inout x01z;
+	pin10	: inout x01z;
+	pin12	: inout x01z;
+	pin13	: inout x01z;
+	pin14	: inout x01z;
+	pin15	: inout x01z;
+	pin16	: inout x01z;    
+	pin17	: inout x01z;
+	pin18	: inout x01z;
+	pin19	: inout x01z;
+	pin20	: in    bit;
+	pin23	: in    bit;
+	pin24	: inout x01z;
+	pin25	: inout x01z;
+	pin26	: inout x01z;
+	pin27	: inout x01z;
+	pin28	: inout x01z;
+	pin29	: inout x01z;
+	pin30	: inout x01z;
+	pin31	: inout x01z;  
+	pin33	: inout x01z;    
+	pin34	: inout x01z;    
+	pin35	: inout x01z;    
+	pin36	: inout x01z;    
+	pin37	: inout x01z;
+	pin38	: inout x01z;
+	pin39	: inout x01z;
+	pin40	: inout x01z;
+	pin41	: in    bit;
+	pin45	: inout x01z;
+	pin46	: inout x01z;
+	pin47	: inout x01z;
+	pin48	: inout x01z;
+	pin49	: inout x01z;
+	pin50	: inout x01z;
+	pin51	: inout x01z;
+	pin52	: inout x01z;
+	pin54	: inout x01z;
+	pin55	: inout x01z;
+	pin56	: inout x01z;
+	pin57	: inout x01z;
+	pin58	: inout x01z;
+	pin59	: inout x01z;
+	pin60	: inout x01z;
+	pin61	: inout x01z;
+	pin62	: in    bit;
+	pin65	: in    bit;
+	pin66	: inout x01z;
+	pin67	: inout x01z;
+	pin68	: inout x01z;
+	pin69	: inout x01z;
+	pin70	: inout x01z;
+	pin71	: inout x01z;
+	pin72	: inout x01z;
+	pin73	: inout x01z;
+	pin75	: inout x01z;
+	pin76	: inout x01z;
+	pin77	: inout x01z;
+	pin78	: inout x01z;
+	pin79	: inout x01z;
+	pin80	: inout x01z;
+	pin81	: inout x01z;
+	pin82	: inout x01z;
+	pin83	: in    bit);
+end C373;
+
+entity c374 is
+    port (
+	pin3	: inout x01z;  
+	pin4	: inout x01z;
+	pin5	: inout x01z;
+	pin6	: inout x01z;
+	pin7	: inout x01z;
+	pin8	: inout x01z;
+	pin9	: inout x01z;
+	pin10	: inout x01z;
+	pin12	: inout x01z;
+	pin13	: inout x01z;
+	pin14	: inout x01z;
+	pin15	: inout x01z;
+	pin16	: inout x01z;    
+	pin17	: inout x01z;
+	pin18	: inout x01z;
+	pin19	: inout x01z;
+	pin20	: in    bit;
+	pin23	: in    bit;
+	pin24	: inout x01z;
+	pin25	: inout x01z;
+	pin26	: inout x01z;
+	pin27	: inout x01z;
+	pin28	: inout x01z;
+	pin29	: inout x01z;
+	pin30	: inout x01z;
+	pin31	: inout x01z;  
+	pin33	: inout x01z;    
+	pin34	: inout x01z;    
+	pin35	: inout x01z;    
+	pin36	: inout x01z;    
+	pin37	: inout x01z;
+	pin38	: inout x01z;
+	pin39	: inout x01z;
+	pin40	: inout x01z;
+	pin41	: in    bit;
+	pin45	: inout x01z;
+	pin46	: inout x01z;
+	pin47	: inout x01z;
+	pin48	: inout x01z;
+	pin49	: inout x01z;
+	pin50	: inout x01z;
+	pin51	: inout x01z;
+	pin52	: inout x01z;
+	pin54	: inout x01z;
+	pin55	: inout x01z;
+	pin56	: inout x01z;
+	pin57	: inout x01z;
+	pin58	: inout x01z;
+	pin59	: inout x01z;
+	pin60	: inout x01z;
+	pin61	: inout x01z;
+	pin62	: in    bit;
+	pin65	: in    bit;
+	pin66	: inout x01z;
+	pin67	: inout x01z;
+	pin68	: inout x01z;
+	pin69	: inout x01z;
+	pin70	: inout x01z;
+	pin71	: inout x01z;
+	pin72	: inout x01z;
+	pin73	: inout x01z;
+	pin75	: inout x01z;
+	pin76	: inout x01z;
+	pin77	: inout x01z;
+	pin78	: inout x01z;
+	pin79	: inout x01z;
+	pin80	: inout x01z;
+	pin81	: inout x01z;
+	pin82	: inout x01z;
+	pin83	: in    bit);
+end C374;
+
+entity c375 is
+    port (
+	pin2	: inout x01z;  
+	pin3	: inout x01z;  
+	pin4	: inout x01z;
+	pin5	: inout x01z;
+	pin6	: inout x01z;
+	pin7	: inout x01z;
+	pin8	: inout x01z;
+	pin9	: inout x01z;
+	pin11	: inout x01z;  
+	pin12	: inout x01z;  
+	pin13	: inout x01z;  
+	pin14	: inout x01z;
+	pin15	: inout x01z;
+	pin16	: inout x01z;
+	pin17	: inout x01z;
+	pin18	: inout x01z;
+	pin19	: in bit;
+	pin22	: in bit;
+	pin23	: inout x01z;  
+	pin24	: inout x01z;
+	pin25	: inout x01z;
+	pin26	: inout x01z;
+	pin27	: inout x01z;
+	pin28	: inout x01z;
+	pin29	: inout x01z;
+	pin30	: inout x01z;
+	pin32	: inout x01z;  
+	pin33	: inout x01z;  
+	pin34	: inout x01z;
+	pin35	: inout x01z;
+	pin36	: inout x01z;
+	pin37	: inout x01z;
+	pin38	: inout x01z;
+	pin39	: inout x01z;
+	pin42	: inout x01z;  
+	pin43	: inout x01z;  
+	pin44	: inout x01z;
+	pin45	: inout x01z;
+	pin46	: inout x01z;
+	pin47	: inout x01z;
+	pin48	: inout x01z;
+	pin49	: inout x01z;
+	pin51	: inout x01z;  
+	pin52	: inout x01z;  
+	pin53	: inout x01z;  
+	pin54	: inout x01z;
+	pin55	: inout x01z;
+	pin56	: inout x01z;
+	pin57	: inout x01z;
+	pin58	: inout x01z;
+	pin59	: in bit;
+	pin63	: inout x01z;  
+	pin64	: inout x01z;
+	pin65	: inout x01z;
+	pin66	: inout x01z;
+	pin67	: inout x01z;
+	pin68	: inout x01z;
+	pin69	: inout x01z;
+	pin70	: inout x01z;
+	pin72	: inout x01z;  
+	pin73	: inout x01z;  
+	pin74	: inout x01z;
+	pin75	: inout x01z;
+	pin76	: inout x01z;
+	pin77	: inout x01z;
+	pin78	: inout x01z;
+	pin79	: inout x01z;
+	pin82	: inout x01z;  
+	pin83	: inout x01z;  
+	pin84	: inout x01z;
+	pin85	: inout x01z;
+	pin86	: inout x01z;
+	pin87	: inout x01z;
+	pin88	: inout x01z;
+	pin89	: inout x01z;
+	pin91	: inout x01z;  
+	pin92	: inout x01z;  
+	pin93	: inout x01z;  
+	pin94	: inout x01z;
+	pin95	: inout x01z;
+	pin96	: inout x01z;
+	pin97	: inout x01z;
+	pin98	: inout x01z;
+	pin99	: in bit;
+	pin102	: in bit;  
+	pin103	: inout x01z;  
+	pin104	: inout x01z;
+	pin105	: inout x01z;
+	pin106	: inout x01z;
+	pin107	: inout x01z;
+	pin108	: inout x01z;
+	pin109	: inout x01z;
+	pin110	: inout x01z;
+	pin112	: inout x01z;  
+	pin113	: inout x01z;  
+	pin114	: inout x01z;
+	pin115	: inout x01z;
+	pin116	: inout x01z;
+	pin117	: inout x01z;
+	pin118	: inout x01z;
+	pin119	: inout x01z;
+	pin122	: inout x01z;  
+	pin123	: inout x01z;  
+	pin124	: inout x01z;
+	pin125	: inout x01z;
+	pin126	: inout x01z;
+	pin127	: inout x01z;
+	pin128	: inout x01z;
+	pin129	: inout x01z;
+	pin131	: inout x01z;  
+	pin132	: inout x01z;  
+	pin133	: inout x01z;  
+	pin134	: inout x01z;
+	pin135	: inout x01z;
+	pin136	: inout x01z;
+	pin137	: inout x01z;
+	pin138	: inout x01z;
+	pin139	: in bit;
+	pin143	: inout x01z;  
+	pin144	: inout x01z;
+	pin145	: inout x01z;
+	pin146	: inout x01z;
+	pin147	: inout x01z;
+	pin148	: inout x01z;
+	pin149	: inout x01z;
+	pin150	: inout x01z;
+	pin152	: inout x01z;  
+	pin153	: inout x01z;  
+	pin154	: inout x01z;
+	pin155	: inout x01z;
+	pin156	: inout x01z;
+	pin157	: inout x01z;
+	pin158	: inout x01z;
+	pin159	: inout x01z);
+end C375;
+
+entity c376 is
+    port (
+	pin2	: inout x01z;  
+	pin3	: inout x01z;  
+	pin4	: inout x01z;
+	pin5	: inout x01z;
+	pin6	: inout x01z;
+	pin7	: inout x01z;
+	pin8	: inout x01z;
+	pin9	: inout x01z;
+	pin11	: inout x01z;  
+	pin12	: inout x01z;  
+	pin13	: inout x01z;  
+	pin14	: inout x01z;
+	pin15	: inout x01z;
+	pin16	: inout x01z;
+	pin17	: inout x01z;
+	pin18	: inout x01z;
+	pin19	: in bit;
+	pin22	: in bit;
+	pin23	: inout x01z;  
+	pin24	: inout x01z;
+	pin25	: inout x01z;
+	pin26	: inout x01z;
+	pin27	: inout x01z;
+	pin28	: inout x01z;
+	pin29	: inout x01z;
+	pin30	: inout x01z;
+	pin32	: inout x01z;  
+	pin33	: inout x01z;  
+	pin34	: inout x01z;
+	pin35	: inout x01z;
+	pin36	: inout x01z;
+	pin37	: inout x01z;
+	pin38	: inout x01z;
+	pin39	: inout x01z;
+	pin42	: inout x01z;  
+	pin43	: inout x01z;  
+	pin44	: inout x01z;
+	pin45	: inout x01z;
+	pin46	: inout x01z;
+	pin47	: inout x01z;
+	pin48	: inout x01z;
+	pin49	: inout x01z;
+	pin51	: inout x01z;  
+	pin52	: inout x01z;  
+	pin53	: inout x01z;  
+	pin54	: inout x01z;
+	pin55	: inout x01z;
+	pin56	: inout x01z;
+	pin57	: inout x01z;
+	pin58	: inout x01z;
+	pin59	: in bit;
+	pin63	: inout x01z;  
+	pin64	: inout x01z;
+	pin65	: inout x01z;
+	pin66	: inout x01z;
+	pin67	: inout x01z;
+	pin68	: inout x01z;
+	pin69	: inout x01z;
+	pin70	: inout x01z;
+	pin72	: inout x01z;  
+	pin73	: inout x01z;  
+	pin74	: inout x01z;
+	pin75	: inout x01z;
+	pin76	: inout x01z;
+	pin77	: inout x01z;
+	pin78	: inout x01z;
+	pin79	: inout x01z;
+	pin82	: inout x01z;  
+	pin83	: inout x01z;  
+	pin84	: inout x01z;
+	pin85	: inout x01z;
+	pin86	: inout x01z;
+	pin87	: inout x01z;
+	pin88	: inout x01z;
+	pin89	: inout x01z;
+	pin91	: inout x01z;  
+	pin92	: inout x01z;  
+	pin93	: inout x01z;  
+	pin94	: inout x01z;
+	pin95	: inout x01z;
+	pin96	: inout x01z;
+	pin97	: inout x01z;
+	pin98	: inout x01z;
+	pin99	: in bit;
+	pin102	: in bit;  
+	pin103	: inout x01z;  
+	pin104	: inout x01z;
+	pin105	: inout x01z;
+	pin106	: inout x01z;
+	pin107	: inout x01z;
+	pin108	: inout x01z;
+	pin109	: inout x01z;
+	pin110	: inout x01z;
+	pin112	: inout x01z;  
+	pin113	: inout x01z;  
+	pin114	: inout x01z;
+	pin115	: inout x01z;
+	pin116	: inout x01z;
+	pin117	: inout x01z;
+	pin118	: inout x01z;
+	pin119	: inout x01z;
+	pin122	: inout x01z;  
+	pin123	: inout x01z;  
+	pin124	: inout x01z;
+	pin125	: inout x01z;
+	pin126	: inout x01z;
+	pin127	: inout x01z;
+	pin128	: inout x01z;
+	pin129	: inout x01z;
+	pin131	: inout x01z;  
+	pin132	: inout x01z;  
+	pin133	: inout x01z;  
+	pin134	: inout x01z;
+	pin135	: inout x01z;
+	pin136	: inout x01z;
+	pin137	: inout x01z;
+	pin138	: inout x01z;
+	pin139	: in bit;
+	pin143	: inout x01z;  
+	pin144	: inout x01z;
+	pin145	: inout x01z;
+	pin146	: inout x01z;
+	pin147	: inout x01z;
+	pin148	: inout x01z;
+	pin149	: inout x01z;
+	pin150	: inout x01z;
+	pin152	: inout x01z;  
+	pin153	: inout x01z;  
+	pin154	: inout x01z;
+	pin155	: inout x01z;
+	pin156	: inout x01z;
+	pin157	: inout x01z;
+	pin158	: inout x01z;
+	pin159	: inout x01z);
+end C376;

@@ -1,0 +1,1132 @@
+--
+--  Copyright Cypress Semiconductor Corporation, 1994,1995,1996
+--  as an unpublished work.
+--
+
+library cypress;
+use cypress.cypress.all;
+
+PACKAGE rtlpkg IS
+
+attribute atomic_rtl of rtlpkg:PACKAGE is NOT_RTL_type;
+
+component cy_bufoe
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: inout x01z;
+	    yfb	: out bit);
+end component;
+
+component cy_dltch
+    port   (d	: in bit;
+	    e	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_dff
+    port   (d	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_xdff
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_jkff
+    port   (j	: in bit;
+	    k	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_buf
+    port   (x	: in bit;
+	    y	: out bit);
+end component;
+
+component cy_srlch
+    port   (s	: in bit;
+	    r	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_srff
+    port   (s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_dsrff
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_tsrff
+    port   (t	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_tff
+    port   (t	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_xbuf
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_triout
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: out x01z);
+end component;
+
+component cy_dsrlch
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    e	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_dsrffe
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    e	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_c39kcarry
+    port   (SelIn	: in bit;
+	    Cpt0	: in bit;
+	    Cpt1	: in bit;
+	    SelOut	: out bit);
+end component;
+
+component cy_c39kxor
+    port   (SIn 	: in bit;
+	    PtmPts	: in bit;
+	    XorOut	: out bit);
+end component;
+
+component cy_c39kmultiply
+    generic(IsSigned	: BOOLEAN := FALSE;
+	DataWidthA	: positive;
+	DataWidthB	: positive;
+	DataWidthP	: positive;
+
+	Hint		: goal_type := memory);
+
+    port   (Data_A	: in  bit_vector(DataWidthA-1 downto 0);
+	    Data_B	: in  bit_vector(DataWidthB-1 downto 0);
+	    Product	: out bit_vector(DataWidthP-1 downto 0));
+end component;
+
+TYPE fdbk_source IS (DIRECT, CLOCK_TREE, EXTERNAL);
+
+component cy_c39kpll
+    generic(feedback	: fdbk_source	:= DIRECT;
+	    multiply	: positive	:= 1;
+	    gclk0_phase	: natural	:= 0;
+	    gclk0_divide: positive	:= 1;
+	    gclk1_phase	: natural	:= 0;
+	    gclk1_divide: positive	:= 1;
+	    gclk2_phase	: natural	:= 0;
+	    gclk2_divide: positive	:= 1;
+	    gclk3_phase	: natural	:= 0;
+	    gclk3_divide: positive	:= 1;
+	    input_freq	: natural	:= 0;
+	    ext_fdbk_delay_ps	: natural	:= 0;
+	    ext_fdbk_port_out	: string:="");
+    port   (pll_in	: in  bit;
+	    ext_fdbk	: in  bit	:= '0';
+	    lock_detect	: out bit;
+	    gclk0	: out bit;
+	    gclk1	: out bit;
+	    gclk2	: out bit;
+	    gclk3	: out bit);
+end component;
+
+component cy_25g01serdes
+
+    port   (txd		: in  bit_vector (15 downto 0) ;
+	    fifo_rstb	: in  bit ;
+	    loop_time	: in  bit ;
+	    diagloop	: in  bit ;
+	    loopa	: in  bit ;
+	    lineloop	: in  bit ;
+	    resetb	: in  bit ;
+	    pwrdnb	: in  bit ;
+	    lockrefb	: in  bit ;
+	    refclk_n	: in  bit ;
+	    refclk_p	: in  bit ;
+	    serial_in_n : in  bit ;
+	    serial_in_p	: in  bit ;
+	    sd		: in  bit ;
+	    serial_out_n: out bit ;
+	    serial_out_p: out bit ;
+	    fifo_err	: out bit ;
+	    txclk	: out bit ;
+	    rxd		: out bit_vector (15 downto 0) ;
+	    rxclk	: out bit ;
+	    lfib	: out bit );
+
+end component;
+
+component cy_2gserdes
+
+    port   (txd		: in  bit_vector (15 downto 0) ;
+	    fifo_rstb	: in  bit ;
+	    loop_time	: in  bit ;
+	    diagloop	: in  bit ;
+	    loopa	: in  bit ;
+	    lineloop	: in  bit ;
+	    resetb	: in  bit ;
+	    pwrdnb	: in  bit ;
+	    lockrefb	: in  bit ;
+	    refclk_n	: in  bit ;
+	    refclk_p	: in  bit ;
+	    serial_in_n : in  bit ;
+	    serial_in_p	: in  bit ;
+	    sd		: in  bit ;
+	    serial_out_n: out bit ;
+	    serial_out_p: out bit ;
+	    fifo_err	: out bit ;
+	    txclk	: out bit ;
+	    rxd		: out bit_vector (15 downto 0) ;
+	    rxclk	: out bit ;
+	    lfib	: out bit );
+
+end component;
+
+    attribute replacement_rtl of cy_2gserdes : component is "cy_25g01serdes";
+
+component cy_15g04serdes
+
+    port (  txda		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdb		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdc		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdd		: in	bit_vector(7 downto 0) := (others => '0');
+	    txpera		: out	bit;
+	    txperb		: out	bit;
+	    txperc		: out	bit;
+	    txperd		: out	bit;
+	    txcta		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctb		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctc		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctd		: in	bit_vector(1 downto 0) := (others => '0');
+
+	    txclka		: in	bit;
+
+	    txclko_p		: out	bit;
+
+	    txrate		: in	bit;
+	    txmode		: in	bit_vector(1 downto 0);
+	    txcksel		: in	bit;
+	    txrstb		: in	bit;
+
+	    rxda		: out	bit_vector(7 downto 0);
+	    rxdb		: out	bit_vector(7 downto 0);
+	    rxdc		: out	bit_vector(7 downto 0);
+	    rxdd		: out	bit_vector(7 downto 0);
+	    rxsta		: out	bit_vector(2 downto 0);
+	    rxstb		: out	bit_vector(2 downto 0);
+	    rxstc		: out	bit_vector(2 downto 0);
+	    rxstd		: out	bit_vector(2 downto 0);
+
+	    rxrate		: in	bit;
+	    rfen		: in	bit;
+	    rxmode		: in	bit_vector(1 downto 0);
+	    rxcksel		: in	bit;
+	    framchar		: in	bit;
+	    rfmode		: in	bit;
+	    decmode		: in	bit;
+
+	    spdsel		: in	bit;
+	    rxclka_p		: out	bit;
+	    rxclkb_p		: inout	bit;
+	    rxclkc_p		: out	bit;
+	    rxclkd_p		: inout	bit;
+
+	    refclk_p		: in	bit;
+	    refclk_n		: in	bit;
+	    serial_outa1_p	: out	bit;
+	    serial_outb1_p	: out	bit;
+	    serial_outc1_p	: out	bit;
+	    serial_outd1_p	: out	bit;
+	    serial_outa2_p	: out	bit;
+	    serial_outb2_p	: out	bit;
+	    serial_outc2_p	: out	bit;
+	    serial_outd2_p	: out	bit;
+	    serial_ina1_p	: in	bit;
+	    serial_inb1_p	: in	bit;
+	    serial_inc1_p	: in	bit;
+	    serial_ind1_p	: in	bit;
+	    serial_ina2_p	: in	bit;
+	    serial_inb2_p	: in	bit;
+	    serial_inc2_p	: in	bit;
+	    serial_ind2_p	: in	bit;
+	    serial_outa1_n	: out	bit;
+	    serial_outb1_n	: out	bit;
+	    serial_outc1_n	: out	bit;
+	    serial_outd1_n	: out	bit;
+	    serial_outa2_n	: out	bit;
+	    serial_outb2_n	: out	bit;
+	    serial_outc2_n	: out	bit;
+	    serial_outd2_n	: out	bit;
+	    serial_ina1_n	: in	bit;
+	    serial_inb1_n	: in	bit;
+	    serial_inc1_n	: in	bit;
+	    serial_ind1_n	: in	bit;
+	    serial_ina2_n	: in	bit;
+	    serial_inb2_n	: in	bit;
+	    serial_inc2_n	: in	bit;
+	    serial_ind2_n	: in	bit;
+	    insela		: in	bit;
+	    inselb		: in	bit;
+	    inselc		: in	bit;
+	    inseld		: in	bit;
+	    sdasel		: in	bit;
+	    lpen		: in	bit;
+	    oele		: in	bit;
+	    bistle		: in	bit;
+	    rxle		: in	bit;
+	    boe			: in	bit_vector(7 downto 0);
+	    bondst		: inout	bit_vector(1 downto 0);
+	    masterb		: in	bit;
+	    bond_all		: inout	bit;
+	    bond_inhb		: in	bit;
+	    lfiab		: out	bit;
+	    lfibb		: out	bit;
+	    lficb		: out	bit;
+	    lfidb		: out	bit;
+	    trstzb		: in	bit);
+
+end component;
+
+component cy_c39kdualport
+    generic(DataWidth	: positive := 8;
+	AddressWidth	: positive := 11;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdataA_reg	: BOOLEAN  := FALSE;
+	outdataB_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (DIn_A	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    DIn_B	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    Addr_A	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    Addr_B	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    WEA	        : in  bit := '0';
+	    WEB	        : in  bit := '0';
+	    InClk_A	: in  bit := '0';
+	    OutClk_A	: in  bit := '0';
+	    OutRegA_AR  : in  bit := '0';
+	    InClk_B	: in  bit := '0';
+	    OutClk_B	: in  bit := '0';
+	    OutRegB_AR  : in  bit := '0';
+	    Addr_matchb	: out bit;
+	    DOut_A	: out bit_vector(DataWidth-1 downto 0); 
+	    DOut_B	: out bit_vector(DataWidth-1 downto 0));
+end component;
+
+component cy_c39kfifo
+    generic(DataWidth	: positive := 8;
+	NumWords	: positive := 512;
+	PAFE_Distance	: natural  := 0);
+    port   (DIn	        : in  bit_vector(DataWidth-1 downto 0);
+	    DOut	: out bit_vector(DataWidth-1 downto 0);
+	    ENR	        : in bit := '0';
+	    ENW   	: in bit := '0';
+	    CKR         : in bit := '0';
+	    CKW         : in bit := '0';
+	    MRb	        : in bit := '0';
+	    EFb	        : out bit;
+	    HFb	        : out bit;
+	    PAFEb	: out bit);
+end component;
+
+component cy_c39ksingleport
+    generic(DataWidth  	: positive := 8;
+	AddressWidth	: positive := 13;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdata_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (Din		: in bit_vector(DataWidth-1 downto 0):=(others => '0');
+	    Addr	: in bit_vector(AddressWidth-1 downto 0);
+	    WE		: in bit := '0';
+	    InClk	: in bit := '0';
+	    OutClk	: in bit := '0';
+	    OutReg_AR	: in bit := '0';
+	    DOut	: out bit_vector(DataWidth-1 downto 0));
+end component;
+
+end rtlpkg;
+
+--------------------------------------------------------------------------
+--		Enties/Architectures for Generic RTL.			--
+--------------------------------------------------------------------------
+
+--
+--	BUFOE
+--
+
+entity cy_bufoe is
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: inout x01z;
+	    yfb	: out bit);
+end cy_bufoe;
+
+ARCHITECTURE archRTL OF CY_BUFOE IS
+BEGIN
+    PROCESS (x, oe)
+    BEGIN
+	IF (oe = '1') THEN
+	    if		(x = '0') then	y <= '0';
+	    elsif	(x = '1') then	y <= '1';
+
+	    else			y <= 'x';
+
+	    end if;
+	ELSE
+
+	    y <= 'z';
+
+	END IF;
+
+    END PROCESS;
+
+    PROCESS (y)
+    BEGIN
+	if	(y = '1') then	yfb <= '1';
+
+	else			yfb <= '0';
+
+	end if;
+
+    END PROCESS;
+END archRTL;
+
+--
+--	DLTCH
+--
+
+entity cy_dltch is
+    port   (d	: in bit;
+	    e	: in bit;
+	    q	: out bit);
+end cy_dltch;
+
+ARCHITECTURE archRTL OF CY_DLTCH IS
+    SIGNAL qx : bit;
+BEGIN
+    qx	<= (d and e) or (d and qx) or (not(e) and qx);
+    q	<= qx;
+END archRTL;
+
+--
+--	CY_DFF
+--
+
+entity cy_dff is
+    port   (d	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_dff;
+
+ARCHITECTURE archRTL OF CY_DFF IS
+BEGIN
+      PROCESS
+      BEGIN
+	  WAIT UNTIL clk = '1';
+	      q <= d;
+      END PROCESS;
+END archRTL;
+
+--
+--	XDFF
+--
+
+entity cy_xdff is
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_xdff;
+
+use work.rtlpkg.all;
+ARCHITECTURE archRTL OF CY_XDFF IS
+    SIGNAL dx : bit;
+BEGIN
+    dx	<= x1 xor x2;
+    u1 : CY_DFF port map(dx,clk,q);
+END archRTL;
+
+--
+--	JKFF
+--
+
+entity cy_jkff is
+    port   (j	: in bit;
+	    k	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_jkff;
+
+use work.rtlpkg.all;
+ARCHITECTURE archRTL OF CY_JKFF IS
+    SIGNAL qx, dx : bit;
+BEGIN
+    dx	<= (j and not(qx)) or (not(k) and qx);
+    q	<= qx;
+    d1: CY_DFF port map(dx,clk,qx);
+END archRTL;
+
+--
+--	BUF
+--
+
+entity cy_buf is
+    port   (x	: in bit;
+	    y	: out bit);
+end cy_buf;
+
+ARCHITECTURE archRTL OF CY_BUF IS
+BEGIN
+    y	<= x;
+END archRTL;
+
+--
+--	SRLCH
+--
+
+entity cy_srlch is
+    port   (s	: in bit;
+	    r	: in bit;
+	    q	: out bit);
+end cy_srlch;
+
+ARCHITECTURE archRTL OF CY_SRLCH IS
+    SIGNAL qx : bit;
+BEGIN
+    qx	<= (s and not(r)) or (qx and not(r));
+    q	<= qx;
+END archRTL;
+
+--
+--	SRFF
+--
+
+entity cy_srff is
+    port   (s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_srff;
+
+use work.rtlpkg.all;
+ARCHITECTURE archRTL OF CY_SRFF IS
+    SIGNAL qx, dx : bit;
+BEGIN
+    dx  <= not ((not(s) or r) and (not (qx) or r));
+    q	<= qx;
+    d: CY_DFF port map(dx,clk,qx);
+END archRTL;
+
+--
+--	DSRFF
+--
+
+entity cy_dsrff is
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_dsrff;
+
+ARCHITECTURE archRTL OF CY_DSRFF IS
+BEGIN
+    PROCESS (r, s, clk)
+    BEGIN
+	IF (r = '1') THEN
+	    q <= '0';
+	ELSIF (s = '1') THEN
+	    q <= '1';
+	ELSIF (clk = '1' AND clk'event) THEN
+	    q <= d;
+	END IF;
+    END PROCESS;
+END archRTL;
+
+--
+--	TSRFF
+--
+
+entity cy_tsrff is
+    port   (t	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_tsrff;
+
+ARCHITECTURE archRTL of CY_TSRFF IS
+   signal dtmp,qtmp : bit := '0';
+BEGIN
+    dtmp <= qtmp xor t;
+    PROCESS (r, s, clk)
+    BEGIN
+	IF (r = '1') THEN
+	    qtmp <= '0';
+	ELSIF (s = '1') THEN
+	    qtmp <= '1';
+	ELSIF (clk = '1' AND clk'event) THEN
+	    qtmp <= dtmp;
+	END IF;
+    END PROCESS;
+    q <= qtmp;
+END archRTL;
+
+--
+--	TFF
+--
+
+entity cy_tff is
+    port   (t	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_tff;
+
+use work.rtlpkg.all;
+ARCHITECTURE archRTL OF CY_TFF IS
+    SIGNAL qx, dx : bit;
+BEGIN
+    dx	<= t xor qx;
+    q	<= qx;
+    d: CY_DFF port map(dx,clk,qx);
+END archRTL;
+
+--
+--	XBUF
+--
+
+entity cy_xbuf is
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    q	: out bit);
+end cy_xbuf;
+
+ARCHITECTURE archRTL OF CY_XBUF IS
+BEGIN
+    q	<= x1 xor x2;
+END archRTL;
+
+--
+--	TRIOUT
+--
+
+entity cy_triout is
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: out x01z);
+end cy_triout;
+
+ARCHITECTURE archRTL OF CY_TRIOUT IS
+BEGIN
+    PROCESS (x, oe)
+    BEGIN
+	IF (oe = '1') THEN
+	    if		(x = '0') then	y <= '0';
+	    elsif	(x = '1') then	y <= '1';
+
+	    else			y <= 'x';
+
+	    end if;
+	ELSE
+
+	    y <= 'z';
+
+	END IF;
+    END PROCESS;
+END archRTL;
+
+--
+--	DSRLCH
+--
+
+entity cy_dsrlch is
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    e	: in bit;
+	    q	: out bit);
+end cy_dsrlch;
+
+ARCHITECTURE archRTL of CY_DSRLCH IS
+    signal qi: bit;
+BEGIN
+    qi	<= (NOT(R) AND (S OR (D AND E) OR (qi AND NOT(E))));
+    Q	<= qi;
+end archRTL;
+
+--
+--	DSRFFE
+--
+
+entity cy_dsrffe is
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    e	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end cy_dsrffe;
+
+architecture archRTL of CY_DSRFFE is
+begin
+    PROCESS (r, s, clk)
+    BEGIN
+	IF (r = '1') THEN
+	    q <= '0';
+	ELSIF (s = '1') THEN
+	    q <= '1';
+	ELSIF (clk = '1' AND clk'event) THEN
+	    IF (e = '1') THEN
+	        q <= d;
+	    END IF;
+	END IF;
+    END PROCESS;
+end archRTL;
+
+--
+--	CY_C39KCARRY
+--
+
+entity cy_c39kcarry is
+    port   (SelIn	: in bit;
+	    Cpt0	: in bit;
+	    Cpt1	: in bit;
+	    SelOut	: out bit);
+end cy_c39kcarry;
+
+architecture archRTL of CY_C39KCARRY is
+begin
+    SelOut <= ((NOT SelIn) AND Cpt0) OR (SelIn AND (NOT Cpt1));
+end archRTL;
+
+--
+--	CY_C39KXOR
+--
+
+entity cy_c39kxor is
+    port   (SIn 	: in bit;
+	    PtmPts	: in bit;
+	    XorOut	: out bit);
+end cy_c39kxor;
+
+architecture archRTL of CY_C39KXOR is
+begin
+    XorOut <= SIn XOR PtmPts;
+end archRTL;
+
+--
+--	CY_C39KPLL
+--
+
+use work.rtlpkg.all;
+
+entity cy_c39kpll is
+    generic(feedback	: fdbk_source	:= DIRECT;
+	    multiply	: positive	:= 1;
+	    gclk0_phase	: natural	:= 0;
+	    gclk0_divide: positive	:= 1;
+	    gclk1_phase	: natural	:= 0;
+	    gclk1_divide: positive	:= 1;
+	    gclk2_phase	: natural	:= 0;
+	    gclk2_divide: positive	:= 1;
+	    gclk3_phase	: natural	:= 0;
+	    gclk3_divide: positive	:= 1;
+	    input_freq	: natural	:= 0;
+	    ext_fdbk_delay_ps	: natural	:= 0;
+	    ext_fdbk_port_out	: string:="");
+    port   (pll_in	: in  bit;
+	    ext_fdbk	: in  bit	:= '0';
+	    lock_detect	: out bit;
+	    gclk0	: out bit;
+	    gclk1	: out bit;
+	    gclk2	: out bit;
+	    gclk3	: out bit);
+end cy_c39kpll;
+
+architecture archRTL of CY_C39KPLL is
+begin
+end archRTL;
+
+--
+--	CY_25G01SERDES
+--
+
+entity cy_25g01serdes is
+
+    port   (txd		: in  bit_vector (15 downto 0) ;
+	    fifo_rstb	: in  bit ;
+	    loop_time	: in  bit ;
+	    diagloop	: in  bit ;
+	    loopa	: in  bit ;
+	    lineloop	: in  bit ;
+	    resetb	: in  bit ;
+	    pwrdnb	: in  bit ;
+	    lockrefb	: in  bit ;
+	    refclk_n	: in  bit ;
+	    refclk_p	: in  bit ;
+	    serial_in_n : in  bit ;
+	    serial_in_p	: in  bit ;
+	    sd		: in  bit ;
+	    serial_out_n: out bit ;
+	    serial_out_p: out bit ;
+	    fifo_err	: out bit ;
+	    txclk	: out bit ;
+	    rxd		: out bit_vector (15 downto 0) ;
+	    rxclk	: out bit ;
+	    lfib	: out bit );
+
+end cy_25g01serdes;
+
+architecture archRTL of cy_25g01serdes is
+begin
+    -- These are dummy assignments
+    serial_out_n	<= '0';
+    serial_out_p	<= '0';
+    fifo_err		<= '0';
+    txclk		<= '0';
+    rxd			<= (others => '0');
+    rxclk		<= '0';
+    lfib		<= '0';
+end archRTL;
+
+--
+--	CY_2GSERDES
+--
+
+use work.rtlpkg.cy_25g01serdes;
+
+entity cy_2gserdes is
+
+    port   (txd		: in  bit_vector (15 downto 0) ;
+	    fifo_rstb	: in  bit ;
+	    loop_time	: in  bit ;
+	    diagloop	: in  bit ;
+	    loopa	: in  bit ;
+	    lineloop	: in  bit ;
+	    resetb	: in  bit ;
+	    pwrdnb	: in  bit ;
+	    lockrefb	: in  bit ;
+	    refclk_n	: in  bit ;
+	    refclk_p	: in  bit ;
+	    serial_in_n : in  bit ;
+	    serial_in_p	: in  bit ;
+	    sd		: in  bit ;
+	    serial_out_n: out bit ;
+	    serial_out_p: out bit ;
+	    fifo_err	: out bit ;
+	    txclk	: out bit ;
+	    rxd		: out bit_vector (15 downto 0) ;
+	    rxclk	: out bit ;
+	    lfib	: out bit );
+
+end cy_2gserdes;
+
+architecture archRTL of cy_2gserdes is
+begin
+
+    UA: cy_25g01serdes port map (
+	    txd		=>	txd,
+            fifo_rstb	=>	fifo_rstb,
+            loop_time	=>	loop_time,
+            diagloop	=>	diagloop,
+            loopa	=>	loopa,
+            lineloop	=>	lineloop,
+            resetb	=>	resetb,
+            pwrdnb	=>	pwrdnb,
+            lockrefb	=>	lockrefb,
+            refclk_n	=>	refclk_n,
+            refclk_p	=>	refclk_p,
+            serial_in_n	=>	serial_in_n,
+            serial_in_p	=>	serial_in_p,
+            sd		=>	sd,
+            serial_out_n=>	serial_out_n,
+            serial_out_p=>	serial_out_p,
+            fifo_err	=>	fifo_err,
+            txclk	=>	txclk,
+            rxd		=>	rxd,
+            rxclk	=>	rxclk,
+            lfib	=>	lfib);
+
+end archRTL;
+
+--
+--	CY_15G04SERDES
+--
+
+entity cy_15g04serdes is
+
+    port (  txda		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdb		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdc		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdd		: in	bit_vector(7 downto 0) := (others => '0');
+	    txpera		: out	bit;
+	    txperb		: out	bit;
+	    txperc		: out	bit;
+	    txperd		: out	bit;
+	    txcta		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctb		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctc		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctd		: in	bit_vector(1 downto 0) := (others => '0');
+
+	    txclka		: in	bit;
+
+	    txclko_p		: out	bit;
+
+	    txrate		: in	bit;
+	    txmode		: in	bit_vector(1 downto 0);
+	    txcksel		: in	bit;
+	    txrstb		: in	bit;
+
+	    rxda		: out	bit_vector(7 downto 0);
+	    rxdb		: out	bit_vector(7 downto 0);
+	    rxdc		: out	bit_vector(7 downto 0);
+	    rxdd		: out	bit_vector(7 downto 0);
+	    rxsta		: out	bit_vector(2 downto 0);
+	    rxstb		: out	bit_vector(2 downto 0);
+	    rxstc		: out	bit_vector(2 downto 0);
+	    rxstd		: out	bit_vector(2 downto 0);
+
+	    rxrate		: in	bit;
+	    rfen		: in	bit;
+	    rxmode		: in	bit_vector(1 downto 0);
+	    rxcksel		: in	bit;
+	    framchar		: in	bit;
+	    rfmode		: in	bit;
+	    decmode		: in	bit;
+
+	    spdsel		: in	bit;
+	    rxclka_p		: out	bit;
+	    rxclkb_p		: inout	bit;
+	    rxclkc_p		: out	bit;
+	    rxclkd_p		: inout	bit;
+
+	    refclk_p		: in	bit;
+	    refclk_n		: in	bit;
+	    serial_outa1_p	: out	bit;
+	    serial_outb1_p	: out	bit;
+	    serial_outc1_p	: out	bit;
+	    serial_outd1_p	: out	bit;
+	    serial_outa2_p	: out	bit;
+	    serial_outb2_p	: out	bit;
+	    serial_outc2_p	: out	bit;
+	    serial_outd2_p	: out	bit;
+	    serial_ina1_p	: in	bit;
+	    serial_inb1_p	: in	bit;
+	    serial_inc1_p	: in	bit;
+	    serial_ind1_p	: in	bit;
+	    serial_ina2_p	: in	bit;
+	    serial_inb2_p	: in	bit;
+	    serial_inc2_p	: in	bit;
+	    serial_ind2_p	: in	bit;
+	    serial_outa1_n	: out	bit;
+	    serial_outb1_n	: out	bit;
+	    serial_outc1_n	: out	bit;
+	    serial_outd1_n	: out	bit;
+	    serial_outa2_n	: out	bit;
+	    serial_outb2_n	: out	bit;
+	    serial_outc2_n	: out	bit;
+	    serial_outd2_n	: out	bit;
+	    serial_ina1_n	: in	bit;
+	    serial_inb1_n	: in	bit;
+	    serial_inc1_n	: in	bit;
+	    serial_ind1_n	: in	bit;
+	    serial_ina2_n	: in	bit;
+	    serial_inb2_n	: in	bit;
+	    serial_inc2_n	: in	bit;
+	    serial_ind2_n	: in	bit;
+	    insela		: in	bit;
+	    inselb		: in	bit;
+	    inselc		: in	bit;
+	    inseld		: in	bit;
+	    sdasel		: in	bit;
+	    lpen		: in	bit;
+	    oele		: in	bit;
+	    bistle		: in	bit;
+	    rxle		: in	bit;
+	    boe			: in	bit_vector(7 downto 0);
+	    bondst		: inout	bit_vector(1 downto 0);
+	    masterb		: in	bit;
+	    bond_all		: inout	bit;
+	    bond_inhb		: in	bit;
+	    lfiab		: out	bit;
+	    lfibb		: out	bit;
+	    lficb		: out	bit;
+	    lfidb		: out	bit;
+	    trstzb		: in	bit);
+
+end cy_15g04serdes;
+
+architecture archRTL of cy_15g04serdes is
+begin
+    -- These are dummy assignments
+    txpera		<= '0';
+    txperb		<= '0';
+    txperc		<= '0';
+    txperd		<= '0';
+    txclko_p		<= '0';
+    rxda		<= (others => '0');
+    rxdb		<= (others => '0');
+    rxdc		<= (others => '0');
+    rxdd		<= (others => '0');
+    rxsta		<= (others => '0');
+    rxstb		<= (others => '0');
+    rxstc		<= (others => '0');
+    rxstd		<= (others => '0');
+    rxclka_p		<= '0';
+    rxclkb_p		<= '0';
+    rxclkc_p		<= '0';
+    rxclkd_p		<= '0';
+    serial_outa1_p	<= '0';
+    serial_outb1_p	<= '0';
+    serial_outc1_p	<= '0';
+    serial_outd1_p	<= '0';
+    serial_outa2_p	<= '0';
+    serial_outb2_p	<= '0';
+    serial_outc2_p	<= '0';
+    serial_outd2_p	<= '0';
+    serial_outa1_n	<= '0';
+    serial_outb1_n	<= '0';
+    serial_outc1_n	<= '0';
+    serial_outd1_n	<= '0';
+    serial_outa2_n	<= '0';
+    serial_outb2_n	<= '0';
+    serial_outc2_n	<= '0';
+    serial_outd2_n	<= '0';
+    bondst		<= (others => '0');
+    bond_all		<= '0';
+    lfiab		<= '0';
+    lfibb		<= '0';
+    lficb		<= '0';
+    lfidb		<= '0';
+end archRTL;
+
+--
+--	CY_C39KMULTIPLY
+--
+
+library cypress;
+use cypress.cypress.all;
+
+entity cy_c39kmultiply is
+    generic(IsSigned	: BOOLEAN := FALSE;
+	DataWidthA	: positive;
+	DataWidthB	: positive;
+	DataWidthP	: positive;
+
+	Hint		: goal_type := memory);
+
+    port   (Data_A	: in  bit_vector(DataWidthA-1 downto 0);
+	    Data_B	: in  bit_vector(DataWidthB-1 downto 0);
+	    Product	: out bit_vector(DataWidthP-1 downto 0));
+end cy_c39kmultiply;
+
+architecture archRTL of cy_c39kmultiply is
+begin
+end archRTL;
+
+--
+--	Entities for Memory RTLs.
+--
+
+entity cy_c39kdualport is
+    generic(DataWidth	: positive := 8;
+	AddressWidth	: positive := 11;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdataA_reg	: BOOLEAN  := FALSE;
+	outdataB_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (DIn_A	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    DIn_B	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    Addr_A	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    Addr_B	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    WEA	        : in  bit := '0';
+	    WEB	        : in  bit := '0';
+	    InClk_A	: in  bit := '0';
+	    OutClk_A	: in  bit := '0';
+	    OutRegA_AR  : in  bit := '0';
+	    InClk_B	: in  bit := '0';
+	    OutClk_B	: in  bit := '0';
+	    OutRegB_AR  : in  bit := '0';
+	    Addr_matchb	: out bit;
+	    DOut_A	: out bit_vector(DataWidth-1 downto 0); 
+	    DOut_B	: out bit_vector(DataWidth-1 downto 0));
+end cy_c39kdualport;
+
+entity cy_c39kfifo is
+    generic(DataWidth	: positive := 8;
+	NumWords	: positive := 512;
+	PAFE_Distance	: natural  := 0);
+    port   (DIn	        : in  bit_vector(DataWidth-1 downto 0);
+	    DOut	: out bit_vector(DataWidth-1 downto 0);
+	    ENR	        : in bit := '0';
+	    ENW   	: in bit := '0';
+	    CKR         : in bit := '0';
+	    CKW         : in bit := '0';
+	    MRb	        : in bit := '0';
+	    EFb	        : out bit;
+	    HFb	        : out bit;
+	    PAFEb	: out bit);
+end cy_c39kfifo;
+
+entity cy_c39ksingleport is
+    generic(DataWidth  	: positive := 8;
+	AddressWidth	: positive := 13;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdata_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (Din		: in bit_vector(DataWidth-1 downto 0):=(others => '0');
+	    Addr	: in bit_vector(AddressWidth-1 downto 0);
+	    WE		: in bit := '0';
+	    InClk	: in bit := '0';
+	    OutClk	: in bit := '0';
+	    OutReg_AR	: in bit := '0';
+	    DOut	: out bit_vector(DataWidth-1 downto 0));
+end cy_c39ksingleport;
+
+architecture archRTL of cy_c39kdualport is
+begin
+end archRTL;
+
+architecture archRTL of cy_c39kfifo is
+begin
+end archRTL;
+
+architecture archRTL of cy_c39ksingleport is
+begin
+end archRTL;
+

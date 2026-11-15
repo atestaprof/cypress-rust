@@ -1,0 +1,1723 @@
+m255
+o
+d/vobs/synth/lib/sim/modelsim
+Pbuff_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L7052
+V7:Oc_I[N3aHP?d@Bj:TN[3
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ec15g04serdes
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L13735
+V:LKdkZI<W]Yd]C9;VD?de2
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_9294 eB3M3i1hjk@gb9PH3kQ?n1
+DE work c15g04serdes :LKdkZI<W]Yd]C9;VD?de2
+l13970
+L13838
+VlioVb^j[3Co`7XABQ64^K1
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pc15gsp
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L13625
+V<dRjbH[i<NTS_Y=:^AGUz0
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ec16v8m
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L1390
+Vn^X9NR8_jXBY6>cb@YZzk0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c16v8m n^X9NR8_jXBY6>cb@YZzk0
+l1423
+L1414
+VR<M@d1X]iP<`k<>8gL`fR2
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec20g10m
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L1577
+V7;SZi0A554J1blY8ECF4Z2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c20g10m 7;SZi0A554J1blY8ECF4Z2
+l1607
+L1599
+VRkHD_XnJ1HBVSC`QN7nOM1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec20m
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L1751
+V0M@E67Eg=MlYR5QGC?C[Z2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c20m 0M@E67Eg=MlYR5QGC?C[Z2
+l1771
+L1769
+VzUO[=jEWaT:2YWczmFAKg0
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-93 -quiet -work primitive
+tExplicit T
+Ec20r
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L1813
+V4AgOlPT8G^cP?nY:Kkg?d1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c20r 4AgOlPT8G^cP?nY:Kkg?d1
+l1837
+L1832
+Vi6h?:JE9fNfjFD<[dNXUg1
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-93 -quiet -work primitive
+tExplicit T
+Ec20ra10m
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L1936
+V74M@?Ago8l[@HnTMo0eff1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c20ra10m 74M@?Ago8l[@HnTMo0eff1
+l1980
+L1967
+V55jHA3_;CojA<o^I:5oP;0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec20tri
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L2225
+VOVAdQ>?RTSYLkDUzOafPJ2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c20tri OVAdQ>?RTSYLkDUzOafPJ2
+l2243
+L2242
+VSbZbm[;YVHL4FKYmae]?C1
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-93 -quiet -work primitive
+tExplicit T
+Ec22v10m
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L2276
+VieeTT5CVHc=nQOkgMl^U32
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c22v10m ieeTT5CVHc=nQOkgMl^U32
+l2318
+L2304
+VgYJLXaoo9PoUNlOgzUJ;83
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec25g01serdes
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L10798
+VoRY5;1C1bV;g^Oe5zIT;S2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c2gcor NX:?5HD09iUkOL]TJiJd<1
+DE work c25g01serdes oRY5;1C1bV;g^Oe5zIT;S2
+l10893
+L10822
+VZMNc[dlKNH_`P5RmQ_JNz3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec2gcor
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L10347
+VNX:?5HD09iUkOL]TJiJd<1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c2gffo <=niTQk[Y[FVE]CKWjlZa1
+DE work c2gcor NX:?5HD09iUkOL]TJiJd<1
+l10427
+L10370
+VU;C5gE]YS=AbSYF[Y[A_j3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec2gffo
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L10191
+V<=niTQk[Y[FVE]CKWjlZa1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c2gffo <=niTQk[Y[FVE]CKWjlZa1
+l10230
+L10201
+VIX?O:2hlBD93L7?jceUf81
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec2gserdes
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L11109
+VBH3<;76AX]i1EK3aaQGOX1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c25g01serdes oRY5;1C1bV;g^Oe5zIT;S2
+DE work c2gserdes BH3<;76AX]i1EK3aaQGOX1
+l11133
+L11132
+Vz6M8ZEa<3h>VD>azHK58G3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec331ckmx
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L2541
+V<5Ook6][^iHGa6M^`oBle1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c331ckmx <5Ook6][^iHGa6M^`oBle1
+l2575
+L2572
+VfV6WbKhQ1Bb7UHXASa;zg3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec331m
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L2618
+VJ6_@=S=IPO7<O]fIz?V?d0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c331m J6_@=S=IPO7<O]fIz?V?d0
+l2679
+L2659
+VeEhZ>Q55iV9Ti4P=OF_mA0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec335ckmx
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3047
+Vce?3EToeNgKY4A1QCTijA3
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c335ckmx ce?3EToeNgKY4A1QCTijA3
+l3070
+L3067
+VZoSj4B7[AoL6>>So^4@o;1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec335h
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3113
+V`SnHbgR^DzEjYen;:EakK1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c335h `SnHbgR^DzEjYen;:EakK1
+l3143
+L3137
+VJYLa811=UY6CHDU]DgRYa1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec335ireg
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3242
+VcMP?8]hUA98d^S9b[<T3U1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c335ireg cMP?8]hUA98d^S9b[<T3U1
+l3271
+L3265
+VKjGJNb<zWmS[m@mZO_WOG0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec335m
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3371
+Vo2]8zB]8n<<ao8c2>N[Z[2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c335m o2]8zB]8n<<ao8c2>N[Z[2
+l3413
+L3401
+VQfUO`9D`k0bRH2[4DznZM0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xckmx
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3658
+V5f^0d:R:8`_kNHk=XgDQ=1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xckmx 5f^0d:R:8`_kNHk=XgDQ=1
+l3690
+L3689
+V[>WMDLa^e:jeb]YmT]O5E3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xexin
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3707
+V_eKi4DLZk^boVDZ<fBW_i1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xexin _eKi4DLZk^boVDZ<fBW_i1
+l3740
+L3739
+VDQ<dzoV7Eh9kJiEN?1^a62
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xexp
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3759
+VU;0Mn:24_2GziDk3ZB:Wi1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xexp U;0Mn:24_2GziDk3ZB:Wi1
+l3792
+L3791
+V^P:43O=^nBmD1LUG>2TZ[3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xh
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L3811
+VI>WBK[FIaTRnEQ@cjEPdb3
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xh I>WBK[FIaTRnEQ@cjEPdb3
+l3869
+L3850
+VX4;UMCOcDFXe0g5HW0CY80
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xin
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4101
+Vh6I;[Nc4ka3foQ33]`^@n0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xin h6I;[Nc4ka3foQ33]`^@n0
+l4132
+L4131
+V3e6YQ>b`ZY<>S3^P?Z^K]1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xm
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4147
+V4VCL^N`aT]6FQz5L5Pn7<0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xm 4VCL^N`aT]6FQz5L5Pn7<0
+l4208
+L4187
+V]cGX4VhSmM0j7<EH18_?=2
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec34xpia
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4469
+V?E@Q^;@oNE5z0`naXP_V`1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c34xpia ?E@Q^;@oNE5z0`naXP_V`1
+l4501
+L4499
+VDF2z<BfIcgg3ZAT@KFDVL0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37kinp
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L5257
+V46g3ANcg<HnaP09SAQY^]3
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37kinp 46g3ANcg<HnaP09SAQY^]3
+l5285
+L5276
+VFT7oZ5O0jXYQ_h;FR]2LU2
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37km
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L5396
+V_3L>lCgYU71Fo<o=zlcGO2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37km _3L>lCgYU71Fo<o=zlcGO2
+l5414
+L5413
+VcdMU];Vio;eWk]hFX:lDL3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37kmux
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L5500
+V>n>3z<Z;b61afG<4_6cK@1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37kmux >n>3z<Z;b61afG<4_6cK@1
+l5512
+L5511
+VOgSP>QicK^RW5SFQL25a83
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37koreg
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L5533
+V8RacfP>fjHDI<1HZ8IED`0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37koreg 8RacfP>fjHDI<1HZ8IED`0
+l5586
+L5573
+ViFFOVVn][BS08M5a2`8;K3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37xclk
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4510
+VJ0fG[?OHb3KV5@?:3T`5J3
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37xclk J0fG[?OHb3KV5@?:3T`5J3
+l4546
+L4544
+V_Xm05K??GGa;8Q>P;dJU`3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37xinp
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4564
+V9S=46<3Ln^kmhzKdl@POn0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37xinp 9S=46<3Ln^kmhzKdl@POn0
+l4608
+L4599
+V4R4[2DgiR4Kl2jPc<hRjA2
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37xm
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4719
+VU=::QRSk7<9V5B]J]9`f]3
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37xm U=::QRSk7<9V5B]J]9`f]3
+l4756
+L4755
+V[7R:_=^Fc]WeP9lB@mfKH1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37xmux
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4818
+VU1R_7:QSXd2UXQOXhF^nh1
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37xmux U1R_7:QSXd2UXQOXhF^nh1
+l4854
+L4853
+VM>VKg^bNI39NZKe]2=kDD3
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37xoreg
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L4871
+V3DGIoMY7XMY<nUATKl4:42
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37xoreg 3DGIoMY7XMY<nUATKl4:42
+l4924
+L4911
+V281n?S`3_RdH4F9_cFzkO0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec37xprod
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L5209
+VJ5DYC6k5K2km>Q5S;R=o62
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c37xprod J5DYC6k5K2km>Q5S;R=o62
+l5243
+L5242
+VfMHV>OM0S5]QCY2hh6;5M1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec39kcf
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L5931
+Vd6ITZkXeOAhO`SJ[1`d783
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c39kcf d6ITZkXeOAhO`SJ[1`d783
+l6109
+L5976
+VlLaDa:fmRc2<Z^k41TS^21
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec39kck
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L6783
+VSMlNUN4nE=DIZobkGkoQC0
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c39kck SMlNUN4nE=DIZobkGkoQC0
+l6850
+L6807
+VJHbiWb=`n=WlSWkl^H_NM0
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-93 -quiet -work primitive
+tExplicit T
+Ec39kcm
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L7365
+V;27Pj`z:_7O:1XE3@T7831
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c39kcm ;27Pj`z:_7O:1XE3@T7831
+l7675
+L7422
+VW6HCL369NDmaQc@eTaa2o2
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec39kcr
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L8745
+V08<H]WVRdijARNkCH[>a^2
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c39kcr 08<H]WVRdijARNkCH[>a^2
+l8921
+L8794
+VjRJZQZG5^k5dFhnWV19e=0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec39kio
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L9456
+VQfYMCPJ7;>1ii87ZY`]Le3
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c39kio QfYMCPJ7;>1ii87ZY`]Le3
+l9554
+L9498
+VC;0C@?ELn?05fcnkjCN_D1
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ec39kmc
+DP work primitive [XE`H1Tnz51mHYcE8Fdz71
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L9905
+V24N>2=cgWKQbSf60>AzM31
+OE;C;5.4d;15
+31
+o-93 -quiet -work primitive
+tExplicit T
+Asim
+DE work c39kmc 24N>2=cgWKQbSf60>AzM31
+l9984
+L9938
+V351HLo8`SL2QKeNG5>Ym90
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 work primitive
+o-93 -quiet -work primitive
+tExplicit T
+Ecy_6gserdes_core
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP work txmodes_pkg ?QoK097II9F;MZI64XlH@2
+DP work rxpll_cdr_pkg QEWWZAYn5:j7NniW@9B2G2
+DP work framer_pkg 4czI<TT6gacDk2neod__33
+DP work fifo_pkg VBEGGH>;3PT4jA7Pi?>`B1
+DP work encodecore_pkg h4K`8n;LhC]i0kcUR:_bD2
+DP work e_buffer_pkg 35beIS2Vn@A_j7f;9cNiT3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP work decoder_pkg 51@@YQE:;XAa1=33:MHC;2
+DP work time_to_real_pkg m^<N@llG?G[P8L2A=5Kf42
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L8787
+VHVV[MiOoch@Un>S246X=J0
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DP work buff_pkg 7:Oc_I[N3aHP?d@Bj:TN[3
+DP work decoded_value_pkg `XV3Aan2lE9QKSjWTK0=52
+DP work cy_std_arith Nh17QSNi5STTa5TV[S2=^3
+DP work enc_hl_pkg kQT9dBbF9h[k?NZEEh20R2
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DE work cy_txmodes 19E>^J`Wa[FP[?dKh=_=`0
+DE work cy_e_buffer HF`;??g_DVPB<MD@VT<:k1
+DE work cy_decoder 8d3:DKgcQiSmcDMf>9P]=0
+DE work cy_framer oe[H>8QjFn=5W;FB:E;:@3
+DE work cy_rxpll_cdr k:o3jndb;U7@5m>`acEzi1
+DE work cy_encodecore 3S_hZhTSZH=G;LKnLHA=F2
+DE work cy_fifo_9294 Hm]1V`=9:Zg4;c9FCflEQ2
+DE work cy_6gserdes_core HVV[MiOoch@Un>S246X=J0
+l9192
+L8891
+VXTkQAIf3dZ3VBE<CAi1km2
+OE;C;5.4d;15
+31
+M16 work time_to_real_pkg
+M15 work decoder_pkg
+M14 ieee std_logic_1164
+M13 work e_buffer_pkg
+M12 work encodecore_pkg
+M11 work fifo_pkg
+M10 work framer_pkg
+M9 work rxpll_cdr_pkg
+M8 work txmodes_pkg
+M7 work xhdl_std_logic
+M6 std textio
+M5 ieee numeric_std
+M4 work enc_hl_pkg
+M3 work cy_std_arith
+M2 work decoded_value_pkg
+M1 work buff_pkg
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pcy_6gserdes_core_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L8655
+V<5Tzd=ki6`m1j8mB4QXlO0
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_9294
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L10575
+VeB3M3i1hjk@gb9PH3kQ?n1
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DP work txmodes_pkg ?QoK097II9F;MZI64XlH@2
+DP work rxpll_cdr_pkg QEWWZAYn5:j7NniW@9B2G2
+DP work framer_pkg 4czI<TT6gacDk2neod__33
+DP work fifo_pkg VBEGGH>;3PT4jA7Pi?>`B1
+DP work encodecore_pkg h4K`8n;LhC]i0kcUR:_bD2
+DP work e_buffer_pkg 35beIS2Vn@A_j7f;9cNiT3
+DP work decoder_pkg 51@@YQE:;XAa1=33:MHC;2
+DE work cy_6gserdes_core HVV[MiOoch@Un>S246X=J0
+DE work cy_9294 eB3M3i1hjk@gb9PH3kQ?n1
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP work cy_6gserdes_core_pkg <5Tzd=ki6`m1j8mB4QXlO0
+DP work time_to_real_pkg m^<N@llG?G[P8L2A=5Kf42
+l11266
+L10707
+Ve[NcQJ2jcz;i4_?WUO7=E0
+OE;C;5.4d;15
+31
+M12 work time_to_real_pkg
+M11 work cy_6gserdes_core_pkg
+M10 ieee std_logic_1164
+M9 work xhdl_std_logic
+M8 std textio
+M7 work decoder_pkg
+M6 work e_buffer_pkg
+M5 work encodecore_pkg
+M4 work fifo_pkg
+M3 work framer_pkg
+M2 work rxpll_cdr_pkg
+M1 work txmodes_pkg
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_buff
+DP work fifo_control_pkg YG@4E:L3K@GZMolKL]EKO1
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP work dpram10x13_pkg L_`4S[`06JU3meg[Y^LGk3
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L7080
+VB`l:O3NUc@ERS1O8=4^IG1
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DE work cy_dpram10x13 _F:KcXWFSOAWP4dkGh@ig0
+DE work cy_fifo_control 5e=4gR[Vmm:US7P:_PV8k2
+DE work cy_buff B`l:O3NUc@ERS1O8=4^IG1
+l7112
+L7101
+VV1CRdXjgVSANAPFamCBaG1
+OE;C;5.4d;15
+31
+M6 work dpram10x13_pkg
+M5 ieee std_logic_1164
+M4 work fifo_control_pkg
+M3 work xhdl_std_logic
+M2 std textio
+M1 ieee numeric_std
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_decoded_value
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3630
+VEd8Zc?=zkBnm0BGc6J6OK1
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_decoded_value Ed8Zc?=zkBnm0BGc6J6OK1
+l3645
+L3639
+V0NUVZbMDdU<7P^UgK=3j20
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_decoder
+DP work cy_std_arith Nh17QSNi5STTa5TV[S2=^3
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP work decoded_value_pkg `XV3Aan2lE9QKSjWTK0=52
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L6112
+V8d3:DKgcQiSmcDMf>9P]=0
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_decoded_value Ed8Zc?=zkBnm0BGc6J6OK1
+DE work cy_decoder 8d3:DKgcQiSmcDMf>9P]=0
+l6210
+L6129
+V7RM?on=LNHzg76^=2QHc30
+OE;C;5.4d;15
+31
+M5 work decoded_value_pkg
+M4 ieee std_logic_1164
+M3 work xhdl_std_logic
+M2 std textio
+M1 work cy_std_arith
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_dpram10x13
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L6575
+V_F:KcXWFSOAWP4dkGh@ig0
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_dpram10x13 _F:KcXWFSOAWP4dkGh@ig0
+l6600
+L6586
+VgZ?R7O4;1Z5;AGKP8PH8<1
+OE;C;5.4d;15
+31
+M3 ieee std_logic_1164
+M2 work xhdl_std_logic
+M1 std textio
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_e_buffer
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DP work cy_std_arith Nh17QSNi5STTa5TV[S2=^3
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP work buff_pkg 7:Oc_I[N3aHP?d@Bj:TN[3
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L7200
+VHF`;??g_DVPB<MD@VT<:k1
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DP work fifo_control_pkg YG@4E:L3K@GZMolKL]EKO1
+DP work dpram10x13_pkg L_`4S[`06JU3meg[Y^LGk3
+DE work cy_buff B`l:O3NUc@ERS1O8=4^IG1
+DE work cy_e_buffer HF`;??g_DVPB<MD@VT<:k1
+l7441
+L7230
+VXec;DzUdlIkgTMH?GT8gN3
+OE;C;5.4d;15
+31
+M8 work buff_pkg
+M7 ieee std_logic_1164
+M6 work xhdl_std_logic
+M5 std textio
+M4 work cy_std_arith
+M3 ieee numeric_std
+M2 work dpram10x13_pkg
+M1 work fifo_control_pkg
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_enc_hl
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP work encodedata_pkg @LLOXcLIBnJ^J6hc>]IZG3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP work encodecmd_pkg PnzkU:D=g[MzPI_69MJoV3
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3205
+V2`3IPEokaE3IN9DZdiaj]1
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_encodecmd A=RgN0:Y]BWzeAVRb`_4Z2
+DE work cy_encodedata 3LL4GWaSF[W2m1V?[XEiT3
+DE work cy_enc_hl 2`3IPEokaE3IN9DZdiaj]1
+l3234
+L3217
+V^iGA`KFMPST;VS9jAGKQ91
+OE;C;5.4d;15
+31
+M5 work encodecmd_pkg
+M4 ieee std_logic_1164
+M3 work encodedata_pkg
+M2 work xhdl_std_logic
+M1 std textio
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_encodecmd
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3029
+VA=RgN0:Y]BWzeAVRb`_4Z2
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_encodecmd A=RgN0:Y]BWzeAVRb`_4Z2
+l3045
+L3039
+V:FDR=2Z=TQGWhlW0VXNJb2
+OE;C;5.4d;15
+31
+M3 ieee std_logic_1164
+M2 work xhdl_std_logic
+M1 std textio
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_encodecore
+DP work cy_std_arith Nh17QSNi5STTa5TV[S2=^3
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+DP work enc_hl_pkg kQT9dBbF9h[k?NZEEh20R2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3353
+V3S_hZhTSZH=G;LKnLHA=F2
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DP work encodedata_pkg @LLOXcLIBnJ^J6hc>]IZG3
+DP work encodecmd_pkg PnzkU:D=g[MzPI_69MJoV3
+DE work cy_enc_hl 2`3IPEokaE3IN9DZdiaj]1
+DE work cy_encodecore 3S_hZhTSZH=G;LKnLHA=F2
+l3409
+L3371
+VNU6I;[G80`WQD[YRka6<K3
+OE;C;5.4d;15
+31
+M7 work enc_hl_pkg
+M6 ieee std_logic_1164
+M5 work xhdl_std_logic
+M4 std textio
+M3 work cy_std_arith
+M2 work encodecmd_pkg
+M1 work encodedata_pkg
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_encodedata
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L1945
+V3LL4GWaSF[W2m1V?[XEiT3
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_encodedata 3LL4GWaSF[W2m1V?[XEiT3
+l1956
+L1952
+Vg93B9MUbomAh9n8GkFLGG2
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_fifo_9294
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L680
+VHm]1V`=9:Zg4;c9FCflEQ2
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_fifo_9294 Hm]1V`=9:Zg4;c9FCflEQ2
+l739
+L694
+VRSQBzBfe[7V_i82MQP`gV3
+OE;C;5.4d;15
+31
+M4 ieee std_logic_1164
+M3 work xhdl_std_logic
+M2 std textio
+M1 ieee numeric_std
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_fifo_control
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L6703
+V5e=4gR[Vmm:US7P:_PV8k2
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_fifo_control 5e=4gR[Vmm:US7P:_PV8k2
+l6764
+L6722
+V;C::IjFVmQGQjZJgdccbd3
+OE;C;5.4d;15
+31
+M4 ieee std_logic_1164
+M3 work xhdl_std_logic
+M2 std textio
+M1 ieee numeric_std
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_framer
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DP work cy_std_arith Nh17QSNi5STTa5TV[S2=^3
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L1429
+Voe[H>8QjFn=5W;FB:E;:@3
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_framer oe[H>8QjFn=5W;FB:E;:@3
+l1515
+L1445
+V>8^dhID_Y:eWa4j?anZdR1
+OE;C;5.4d;15
+31
+M5 ieee std_logic_1164
+M4 work xhdl_std_logic
+M3 std textio
+M2 work cy_std_arith
+M1 ieee numeric_std
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ecy_rxpll_cdr
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP work time_to_real_pkg m^<N@llG?G[P8L2A=5Kf42
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L927
+Vk:o3jndb;U7@5m>`acEzi1
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_rxpll_cdr k:o3jndb;U7@5m>`acEzi1
+l996
+L952
+VzWEPcTF;c^]d;GM2]TBo;1
+OE;C;5.4d;15
+31
+M4 ieee std_logic_1164
+M3 work time_to_real_pkg
+M2 work xhdl_std_logic
+M1 std textio
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pcy_std_arith
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L499
+VNh17QSNi5STTa5TV[S2=^3
+OE;C;5.4d;15
+31
+b1
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Bbody
+DB work cy_std_arith Nh17QSNi5STTa5TV[S2=^3
+l0
+L499
+VNh17QSNi5STTa5TV[S2=^3
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+nbody
+Ecy_txmodes
+DP ieee numeric_std JEAJIQRRkDSZF:PY1:8aa1
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L1761
+V19E>^J`Wa[FP[?dKh=_=`0
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Asim
+DE work cy_txmodes 19E>^J`Wa[FP[?dKh=_=`0
+l1785
+L1775
+V>AELnBn^o5QLoV7>DOhnc2
+OE;C;5.4d;15
+31
+M4 ieee std_logic_1164
+M3 work xhdl_std_logic
+M2 std textio
+M1 ieee numeric_std
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pdecoded_value_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3616
+V`XV3Aan2lE9QKSjWTK0=52
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pdecoder_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L6087
+V51@@YQE:;XAa1=33:MHC;2
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pdpram10x13_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L6558
+VL_`4S[`06JU3meg[Y^LGk3
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pe_buffer_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L7161
+V35beIS2Vn@A_j7f;9cNiT3
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Penc_hl_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3185
+VkQT9dBbF9h[k?NZEEh20R2
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pencodecmd_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3013
+VPnzkU:D=g[MzPI_69MJoV3
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pencodecore_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L3327
+Vh4K`8n;LhC]i0kcUR:_bD2
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pencodedata_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L1933
+V@LLOXcLIBnJ^J6hc>]IZG3
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pfifo_control_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L6677
+VYG@4E:L3K@GZMolKL]EKO1
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pfifo_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L659
+VVBEGGH>;3PT4jA7Pi?>`B1
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pframer_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L1405
+V4czI<TT6gacDk2neod__33
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pprimitive
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1024366967
+F/vobs/synth/lib/sim/postsynth/vhd/primitive.vhd
+l0
+L9
+V[XE`H1Tnz51mHYcE8Fdz71
+OE;C;5.4d;15
+31
+b1
+M1 ieee std_logic_1164
+o-93 -quiet -work primitive
+tExplicit T
+Bbody
+DB work primitive [XE`H1Tnz51mHYcE8Fdz71
+l0
+L9
+V[XE`H1Tnz51mHYcE8Fdz71
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-93 -quiet -work primitive
+tExplicit T
+nbody
+Prxpll_cdr_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L895
+VQEWWZAYn5:j7NniW@9B2G2
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Ptime_to_real_pkg
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L613
+Vm^<N@llG?G[P8L2A=5Kf42
+OE;C;5.4d;15
+31
+b1
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Bbody
+DB work time_to_real_pkg m^<N@llG?G[P8L2A=5Kf42
+l0
+L613
+Vm^<N@llG?G[P8L2A=5Kf42
+OE;C;5.4d;15
+31
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+nbody
+Ptxmodes_pkg
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L1740
+V?QoK097II9F;MZI64XlH@2
+OE;C;5.4d;15
+31
+M1 ieee std_logic_1164
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Pxhdl_std_logic
+DP std textio K]Z^fghZ6B=BjnK5NomDT3
+DP ieee std_logic_1164 GH1=`jDDBJ=`LM;:Ak`kf2
+w1026434107
+F/vobs/synth/lib/common/c15g04serdes.vhd
+l0
+L38
+Vn1ibQJ[<[zAU6[aAgXNAQ0
+OE;C;5.4d;15
+31
+b1
+M2 ieee std_logic_1164
+M1 std textio
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+Bbody
+DB work xhdl_std_logic n1ibQJ[<[zAU6[aAgXNAQ0
+l0
+L38
+Vn1ibQJ[<[zAU6[aAgXNAQ0
+OE;C;5.4d;15
+31
+M2 ieee std_logic_1164
+M1 std textio
+o-quiet -work primitive -93 -nowarn 3
+tExplicit T
+nbody

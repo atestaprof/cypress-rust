@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>espresso-rs · Minimizador PLA en WebAssembly</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-elevated: #1c2129;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #3fb950;
+      --accent-hover: #4ac95c;
+      --accent-glow: rgba(63, 185, 80, 0.22);
+      --info: #58a6ff;
+      --info-bg: rgba(88, 166, 255, 0.12);
+      --danger: #f85149;
+      --danger-bg: rgba(248, 81, 73, 0.12);
+      --code-bg: #090d13;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      --font-mono: "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas, monospace;
+    }
+
+    [data-theme="light"] {
+      --bg: #f6f8fa;
+      --surface: #ffffff;
+      --surface-elevated: #f0f3f6;
+      --border: #d0d7de;
+      --text: #1f2328;
+      --text-muted: #59636e;
+      --accent: #1a7f37;
+      --accent-hover: #218bff;
+      --accent-glow: rgba(26, 127, 55, 0.18);
+      --info: #0969da;
+      --info-bg: rgba(9, 105, 218, 0.1);
+      --danger: #cf222e;
+      --danger-bg: rgba(207, 34, 46, 0.1);
+      --code-bg: #f8fafc;
+      --shadow: 0 8px 24px rgba(31, 35, 40, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .brand span.subtitle {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface-elevated);
+      color: var(--text-muted);
+    }
+
+    .badge.ready {
+      color: var(--accent);
+      border-color: rgba(63, 185, 80, 0.4);
+      background: rgba(63, 185, 80, 0.1);
+    }
+
+    .badge.error {
+      color: var(--danger);
+      border-color: rgba(248, 81, 73, 0.4);
+      background: var(--danger-bg);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    label.inline-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    select,
+    button.secondary {
+      background: var(--surface-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    select:hover,
+    button.secondary:hover {
+      border-color: var(--text-muted);
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.15rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 var(--accent-glow);
+      transition: transform 0.1s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button.primary:hover:not(:disabled) {
+      filter: brightness(1.08);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+
+    button.primary:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .metrics {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .metric-pill {
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: var(--info-bg);
+      color: var(--info);
+      border: 1px solid rgba(88, 166, 255, 0.28);
+    }
+
+    .error-banner {
+      display: none;
+      padding: 0.85rem 1.05rem;
+      border-radius: 10px;
+      background: var(--danger-bg);
+      border: 1px solid var(--danger);
+      border-left: 4px solid var(--danger);
+      color: var(--danger);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    #download-jed-btn {
+      background: var(--info);
+      color: #ffffff;
+    }
+
+    #download-jed-btn:hover:not(:disabled) {
+      box-shadow: 0 0 0 4px var(--info-bg);
+    }
+
+    .panel:focus-within {
+      border-color: var(--info);
+    }
+
+    .pin-planner-body {
+      padding: 1rem;
+      background: var(--code-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .pin-planner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .pin-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .pin-group h3 {
+      margin: 0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .pin-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+    }
+
+    .pin-sig-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-width: 0;
+    }
+
+    .pin-sig-name {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pin-vhdl-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.12rem 0.42rem;
+      border-radius: 999px;
+      background: rgba(63, 185, 80, 0.16);
+      border: 1px solid rgba(63, 185, 80, 0.55);
+      color: #3fb950;
+      white-space: nowrap;
+    }
+
+    [data-theme="light"] .pin-vhdl-badge {
+      color: #1a7f37;
+      background: rgba(26, 127, 55, 0.12);
+      border-color: rgba(26, 127, 55, 0.45);
+    }
+
+    .pin-row.pin-vhdl-locked {
+      border-color: rgba(63, 185, 80, 0.5);
+    }
+
+    .pin-row select {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.3rem 0.5rem;
+      min-width: 155px;
+    }
+
+    .pin-warning {
+      display: none;
+      padding: 0.7rem 0.95rem;
+      border-radius: 8px;
+      background: rgba(210, 153, 34, 0.14);
+      border: 1px solid #d29922;
+      border-left: 4px solid #d29922;
+      color: #e3b341;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    [data-theme="light"] .pin-warning {
+      color: #9a6700;
+      background: rgba(210, 153, 34, 0.12);
+    }
+
+    .pin-warning.visible {
+      display: block;
+    }
+
+    .error-banner.visible {
+      display: block;
+    }
+
+    .prs-dropzone {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.15rem;
+      background: var(--surface);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .prs-dropzone.dragover {
+      border-color: var(--accent);
+      background: rgba(63, 185, 80, 0.08);
+    }
+
+    .prs-dropzone-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .prs-dropzone-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .prs-dropzone-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .prs-inspector {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .prs-inspector.visible {
+      display: block;
+    }
+
+    .prs-inspector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--code-bg);
+    }
+
+    .prs-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+    }
+
+    .prs-card h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .prs-chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .prs-chip {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface-elevated);
+    }
+
+    .prs-chip.in {
+      border-color: rgba(88, 166, 255, 0.4);
+      color: var(--info);
+      background: var(--info-bg);
+    }
+
+    .prs-chip.out {
+      border-color: rgba(63, 185, 80, 0.4);
+      color: var(--accent);
+      background: rgba(63, 185, 80, 0.1);
+    }
+
+    .prs-eq-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .editors {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      flex: 1;
+      min-height: 460px;
+    }
+
+    @media (max-width: 860px) {
+      .editors {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-elevated);
+    }
+
+    .panel-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .panel-meta {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      min-height: 400px;
+      resize: vertical;
+      border: none;
+      outline: none;
+      padding: 1rem;
+      background: var(--code-bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      tab-size: 2;
+    }
+
+    textarea[readonly] {
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    kbd {
+      padding: 0.12rem 0.4rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface-elevated);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>espresso-rs</h1>
+        <span class="subtitle">Berkeley Espresso 2.3 Multi-Salida en Rust + WebAssembly</span>
+      </div>
+      <div class="header-controls">
+        <div id="wasm-status" class="badge">
+          <span class="dot"></span>
+          <span id="wasm-status-text">Cargando Wasm…</span>
+        </div>
+        <button id="theme-btn" class="secondary" type="button" title="Alternar tema claro/oscuro">
+          Cambiar tema
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="toolbar">
+      <div class="toolbar-group">
+        <label class="inline-label" for="preset-select">Ejemplo precargado:</label>
+        <select id="preset-select">
+          <option value="bcd7seg">Decodificador BCD a 7 segmentos (4 ent, 7 sal + DC)</option>
+          <option value="full_adder">Sumador Completo de 1 bit (3 ent, 2 sal)</option>
+          <option value="xor2">XOR de 2 variables (2 ent, 1 sal)</option>
+          <option value="mv_sharing">Compartición Multi-Salida MV (3 ent, 2 sal)</option>
+        </select>
+      </div>
+
+      <div class="toolbar-group">
+        <div class="metrics">
+          <span id="time-pill" class="metric-pill">Tiempo: — ms</span>
+          <span id="stats-pill" class="metric-pill">Términos: —</span>
+        </div>
+        <button id="run-btn" class="primary" type="button" disabled>
+          Minimizar con Espresso (Wasm)
+        </button>
+      </div>
+    </section>
+
+    <div id="error-banner" class="error-banner" role="alert"></div>
+
+    <section id="prs-dropzone" class="prs-dropzone">
+      <div class="prs-dropzone-info">
+        <div class="prs-dropzone-title">Cargar archivo binario Cypress <code>.prs</code> (o <code>.pla</code>)</div>
+        <div class="prs-dropzone-sub" id="prs-file-label">
+          Arrastra y suelta un archivo <code>.prs</code> aquí, o selecciónalo desde tu equipo para extraer puertos, ecuaciones y minimizar su <code>.pla</code>.
+        </div>
+      </div>
+      <div class="toolbar-group">
+        <input id="prs-file-input" type="file" accept=".prs,.pla" hidden />
+        <button id="prs-pick-btn" class="secondary" type="button" disabled>Seleccionar .prs / .pla</button>
+        <button id="prs-sample-btn" class="secondary" type="button" disabled>Cargar warp_test/test.prs</button>
+      </div>
+    </section>
+
+    <section id="prs-inspector" class="prs-inspector">
+      <div class="panel-header">
+        <div class="panel-title">Inspección AST (.prs) · <span id="prs-entity-name">—</span></div>
+        <span class="panel-meta" id="prs-meta-info">0 objetos</span>
+      </div>
+      <div class="prs-inspector-grid">
+        <div class="prs-card">
+          <h3>Puertos de Entrada (.ilb)</h3>
+          <div id="prs-inputs-list" class="prs-chip-list"></div>
+        </div>
+        <div class="prs-card">
+          <h3>Puertos de Salida (.ob)</h3>
+          <div id="prs-outputs-list" class="prs-chip-list"></div>
+        </div>
+        <div class="prs-card">
+          <h3>Ecuaciones Booleanas</h3>
+          <ul id="prs-equations-list" class="prs-eq-list"></ul>
+        </div>
+        <div class="prs-card">
+          <h3>Archivos Fuente</h3>
+          <div id="prs-sources-list" class="prs-chip-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="editors">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Entrada (.pla)</div>
+          <span class="panel-meta">Atajo: <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd></span>
+        </div>
+        <textarea
+          id="pla-input"
+          spellcheck="false"
+          placeholder="Pega o escribe aquí tu especificación Berkeley .pla..."
+        ></textarea>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Salida Minimizada (.pla)</div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button id="download-jed-btn" class="primary" type="button" disabled>Descargar .JED</button>
+            <button id="copy-btn" class="secondary" type="button">Copiar salida</button>
+          </div>
+        </div>
+        <textarea
+          id="pla-output"
+          readonly
+          spellcheck="false"
+          placeholder="El PLA minimizado aparecerá aquí..."
+        ></textarea>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Ecuaciones Lógicas Minimizadas (SOP)</div>
+        <button id="copy-eqn-btn" class="secondary" type="button">Copiar ecuaciones</button>
+      </div>
+      <textarea
+        id="eqn-output"
+        readonly
+        spellcheck="false"
+        style="min-height: 160px;"
+        placeholder="Las ecuaciones booleanas minimizadas (combinacionales y .d secuenciales) aparecerán aquí..."
+      ></textarea>
+    </section>
+
+    <section id="pin-planner-panel" class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Pin Planner / Mapeo Físico</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <select id="device-selector" aria-label="Dispositivo objetivo">
+            <option value="GAL16V8">Lattice GAL16V8 (20 pines)</option>
+            <option value="GAL22V10" selected>Lattice GAL22V10 (24 pines)</option>
+            <option value="CY37032">Cypress CY37032 (44 pines)</option>
+          </select>
+          <span id="pin-planner-meta" class="panel-meta">Pines 1, 2–11, 13: Entradas · Pines 14–23: Macrocélulas I/O · Pin 12/24: GND/VCC</span>
+        </div>
+      </div>
+      <div class="pin-planner-body">
+        <div id="pin-warning-banner" class="pin-warning" role="status" aria-live="polite"></div>
+        <div id="pin-planner-grid" class="pin-planner-grid">
+          <div class="panel-meta">Minimiza un diseño .pla para asignar sus pines físicos.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Ejecutando <code>run_espresso</code>, <code>parse_prs_summary</code>, <code>prs_to_pla_wasm</code>, <code>prs_pin_map_wasm</code>, <code>pla_to_eqn_wasm</code> y <code>pla_to_jedec_wasm</code> localmente en el navegador vía WebAssembly (cero servidor backend).
+  </footer>
+
+  <script type="module">
+    import init, {
+      run_espresso,
+      parse_prs_summary,
+      prs_to_pla_wasm,
+      prs_pin_map_wasm,
+      pla_to_eqn_wasm,
+      pla_to_jedec_wasm
+    } from "../pkg/espresso_rs.js";
+
+    const PRESETS = {
+      xor2: `# Compuerta XOR de 2 entradas
+.i 2
+.o 1
+.ilb a b
+.ob xor
+.p 4
+00 0
+01 1
+10 1
+11 0
+.e
+`,
+      full_adder: `# Sumador completo (Full Adder) de 1 bit
+.i 3
+.o 2
+.ilb a b cin
+.ob sum cout
+.p 8
+000 00
+001 10
+010 10
+011 01
+100 10
+101 01
+110 01
+111 11
+.e
+`,
+      bcd7seg: `# Decodificador BCD (0..9) a display de 7 segmentos (a..g)
+# Los códigos 10..15 se definen como don't-care ('-') en modo fd
+.i 4
+.o 7
+.ilb d3 d2 d1 d0
+.ob a b c d e f g
+.type fd
+0000 1111110
+0001 0110000
+0010 1101101
+0011 1111001
+0100 0110011
+0101 1011011
+0110 1011111
+0111 1110000
+1000 1111111
+1001 1111011
+101- -------
+11-- -------
+.e
+`,
+      mv_sharing: `# Ejemplo de compartición de términos producto entre salidas:
+# Por separado requieren 4 cubos; en conjunto MV comparten '001' (3 cubos)
+.i 3
+.o 2
+.ilb a b c
+.ob f0 f1
+001 11
+110 10
+111 10
+010 01
+011 01
+.e
+`
+    };
+
+    const presetSelect = document.getElementById("preset-select");
+    const plaInput = document.getElementById("pla-input");
+    const plaOutput = document.getElementById("pla-output");
+    const eqnOutput = document.getElementById("eqn-output");
+    const runBtn = document.getElementById("run-btn");
+    const downloadJedBtn = document.getElementById("download-jed-btn");
+    const copyBtn = document.getElementById("copy-btn");
+    const copyEqnBtn = document.getElementById("copy-eqn-btn");
+    const themeBtn = document.getElementById("theme-btn");
+    const wasmStatus = document.getElementById("wasm-status");
+    const wasmStatusText = document.getElementById("wasm-status-text");
+    const timePill = document.getElementById("time-pill");
+    const statsPill = document.getElementById("stats-pill");
+    const errorBanner = document.getElementById("error-banner");
+    const prsDropzone = document.getElementById("prs-dropzone");
+    const prsFileInput = document.getElementById("prs-file-input");
+    const prsPickBtn = document.getElementById("prs-pick-btn");
+    const prsSampleBtn = document.getElementById("prs-sample-btn");
+    const prsFileLabel = document.getElementById("prs-file-label");
+    const prsInspector = document.getElementById("prs-inspector");
+    const prsEntityName = document.getElementById("prs-entity-name");
+    const prsMetaInfo = document.getElementById("prs-meta-info");
+    const prsInputsList = document.getElementById("prs-inputs-list");
+    const prsOutputsList = document.getElementById("prs-outputs-list");
+    const prsEquationsList = document.getElementById("prs-equations-list");
+    const prsSourcesList = document.getElementById("prs-sources-list");
+    const pinPlannerGrid = document.getElementById("pin-planner-grid");
+    const pinWarningBanner = document.getElementById("pin-warning-banner");
+    const deviceSelector = document.getElementById("device-selector");
+    const pinPlannerMeta = document.getElementById("pin-planner-meta");
+
+    function renderChipList(container, items, extraClass = "") {
+      container.innerHTML = "";
+      if (!items || items.length === 0) {
+        const empty = document.createElement("span");
+        empty.className = "prs-chip";
+        empty.textContent = "—";
+        container.appendChild(empty);
+        return;
+      }
+      for (const item of items) {
+        const chip = document.createElement("span");
+        chip.className = extraClass ? `prs-chip ${extraClass}` : "prs-chip";
+        chip.textContent = item;
+        container.appendChild(chip);
+      }
+    }
+
+    function renderPrsInspector(summary) {
+      prsEntityName.textContent = summary.entity ?? "(sin entidad)";
+      prsMetaInfo.textContent = `${summary.object_count} objetos · ${summary.inputs.length} ent / ${summary.outputs.length} sal`;
+      renderChipList(prsInputsList, summary.inputs, "in");
+      renderChipList(prsOutputsList, summary.outputs, "out");
+      renderChipList(prsSourcesList, summary.source_files);
+
+      prsEquationsList.innerHTML = "";
+      if (!summary.equations || summary.equations.length === 0) {
+        const li = document.createElement("li");
+        li.textContent = "(sin ecuaciones combinacionales)";
+        prsEquationsList.appendChild(li);
+      } else {
+        for (const eq of summary.equations) {
+          const li = document.createElement("li");
+          li.textContent = `${eq.output} <= ${eq.expr};`;
+          prsEquationsList.appendChild(li);
+        }
+      }
+      prsInspector.classList.add("visible");
+    }
+
+    function clearError() {
+      errorBanner.classList.remove("visible");
+      errorBanner.textContent = "";
+    }
+
+    function showError(context, err) {
+      const detail = err instanceof Error ? err.message : String(err);
+      errorBanner.textContent = `[ERROR] ${context}: ${detail}`;
+      errorBanner.classList.add("visible");
+    }
+
+    let vhdlPinMap = {};
+    let vhdlPinConflicts = [];
+
+    function processPrsBytes(fileName, bytes) {
+      clearError();
+      if (!bytes || bytes.length === 0) {
+        prsInspector.classList.remove("visible");
+        prsFileLabel.textContent = `Error al cargar ${fileName}: archivo vacío.`;
+        showError(`Archivo inválido (${fileName})`, "El archivo está vacío (0 bytes).");
+        return;
+      }
+      try {
+        const summaryJson = parse_prs_summary(bytes);
+        const summary = JSON.parse(summaryJson);
+        renderPrsInspector(summary);
+
+        try {
+          vhdlPinMap = JSON.parse(prs_pin_map_wasm(bytes));
+        } catch {
+          vhdlPinMap = {};
+        }
+
+        const plaText = prs_to_pla_wasm(bytes);
+        const pinCount = Object.keys(vhdlPinMap).length;
+        prsFileLabel.textContent = pinCount > 0
+          ? `Archivo cargado: ${fileName} (${bytes.length} bytes) → .pla generado (${pinCount} pines fijados desde VHDL).`
+          : `Archivo cargado: ${fileName} (${bytes.length} bytes) → .pla generado y minimizado automáticamente.`;
+        plaInput.value = plaText;
+        executeMinimization();
+      } catch (err) {
+        vhdlPinMap = {};
+        prsInspector.classList.remove("visible");
+        plaOutput.value = "";
+        eqnOutput.value = "";
+        downloadJedBtn.disabled = true;
+        prsFileLabel.textContent = `Error procesando ${fileName}.`;
+        showError(`No se pudo decodificar el .prs (${fileName})`, err);
+      }
+    }
+
+    async function handleFile(file) {
+      if (!file) return;
+      clearError();
+      const lowerName = file.name.toLowerCase();
+      try {
+        if (lowerName.endsWith(".pla")) {
+          vhdlPinMap = {};
+          prsInspector.classList.remove("visible");
+          plaInput.value = await file.text();
+          prsFileLabel.textContent = `Archivo .pla cargado: ${file.name}`;
+          executeMinimization();
+          return;
+        }
+        if (!lowerName.endsWith(".prs")) {
+          prsInspector.classList.remove("visible");
+          prsFileLabel.textContent = `Extensión no soportada: ${file.name}`;
+          showError(
+            `Formato no soportado (${file.name})`,
+            "Selecciona un archivo binario .prs de Cypress Warp o una tabla .pla."
+          );
+          return;
+        }
+        const buffer = await file.arrayBuffer();
+        processPrsBytes(file.name, new Uint8Array(buffer));
+      } catch (err) {
+        prsInspector.classList.remove("visible");
+        showError(`Error leyendo el archivo ${file.name}`, err);
+      }
+    }
+
+    function countCubeRows(plaText) {
+      return plaText
+        .split("\n")
+        .map((line) => line.split("#")[0].trim())
+        .filter((line) => line.length > 0 && !line.startsWith("."))
+        .length;
+    }
+
+    const DEVICE_PROFILES = {
+      GAL16V8: {
+        meta: "GAL16V8 (20 pines DIP) · 1 (CLK), 2–9, 11 (/OE): Entradas · 12–19: Macrocélulas I/O · 10/20: GND/VCC",
+        inputPins: [2, 3, 4, 5, 6, 7, 8, 9, 1, 11, 19, 18, 17, 14, 13, 12],
+        outputSelectPins: [19, 18, 17, 16, 15, 14, 13, 12],
+        defaultOutputPins: [19, 18, 17, 16, 15, 14, 13, 12],
+        formatPin: (pin) => {
+          if (pin === 1) return "Pin 1 (CLK / IN)";
+          if (pin >= 2 && pin <= 9) return `Pin ${pin} (IN${pin - 2})`;
+          if (pin === 11) return "Pin 11 (/OE / IN)";
+          if (pin >= 12 && pin <= 19) return `Pin ${pin} (I/O OLMC${19 - pin})`;
+          return `Pin ${pin}`;
+        },
+      },
+      GAL22V10: {
+        meta: "GAL22V10 (24 pines) · 1, 2–11, 13: Entradas · 14–23: Macrocélulas I/O · 12/24: GND/VCC",
+        inputPins: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14],
+        outputSelectPins: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14],
+        defaultOutputPins: [23, 22, 21, 20, 19, 18, 17, 16, 15, 14],
+        formatPin: (pin) => {
+          if (pin === 1) return "Pin 1 (CLK / IN0)";
+          if (pin >= 2 && pin <= 11) return `Pin ${pin} (IN${pin - 1})`;
+          if (pin === 13) return "Pin 13 (IN11)";
+          return `Pin ${pin} (I/O OLMC${23 - pin})`;
+        },
+      },
+      CY37032: {
+        meta: "CY37032VP44 (44 pines PLCC) · 32 I/O (MC1–MC32) · Pines 10,13,32,33,35: Entradas/CLK",
+        inputPins: [
+          10, 13, 32, 33, 35,
+          2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19, 20, 21,
+          24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42, 43
+        ],
+        outputSelectPins: [
+          2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19, 20, 21,
+          24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42, 43,
+          10, 13, 32, 33, 35
+        ],
+        defaultOutputPins: [
+          2, 3, 4, 5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 19, 20, 21,
+          24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42, 43
+        ],
+        formatPin: (pin) => {
+          const ded = { 10: "IN33 / CLK0", 13: "IN34 / CLK1", 32: "IN35 / CLK2", 33: "IN36", 35: "IN37 / CLK3" };
+          if (ded[pin]) return `Pin ${pin} (${ded[pin]})`;
+          if (pin >= 2 && pin <= 9) return `Pin ${pin} (I/O MC${pin - 1} · LAB1)`;
+          if (pin >= 14 && pin <= 21) return `Pin ${pin} (I/O MC${pin - 5} · LAB1)`;
+          if (pin >= 24 && pin <= 31) return `Pin ${pin} (I/O MC${pin - 7} · LAB2)`;
+          if (pin >= 36 && pin <= 43) return `Pin ${pin} (I/O MC${pin - 11} · LAB2)`;
+          return `Pin ${pin}`;
+        },
+      },
+    };
+
+    function extractPlaSignals(plaText) {
+      let nin = 0;
+      let nout = 0;
+      let ilb = null;
+      let ob = null;
+      for (const rawLine of plaText.split("\n")) {
+        const line = rawLine.split("#")[0].trim();
+        if (!line.startsWith(".")) continue;
+        const parts = line.split(/\s+/);
+        const dir = parts[0];
+        if (dir === ".i" && parts[1]) nin = parseInt(parts[1], 10) || 0;
+        else if (dir === ".o" && parts[1]) nout = parseInt(parts[1], 10) || 0;
+        else if (dir === ".ilb") ilb = parts.slice(1);
+        else if (dir === ".ob") ob = parts.slice(1);
+      }
+      const inputs = Array.from({ length: nin }, (_, i) => (ilb && ilb[i]) ? ilb[i] : `in${i}`);
+      const outputs = Array.from({ length: nout }, (_, i) => (ob && ob[i]) ? ob[i] : `out${i}`);
+      return { inputs, outputs };
+    }
+
+    function validatePinPlanner() {
+      const device = deviceSelector.value || "GAL22V10";
+      const selects = Array.from(pinPlannerGrid.querySelectorAll("select[data-signal]"));
+      const warnings = [...vhdlPinConflicts];
+      const inPins = new Map();
+      const outPins = new Map();
+      let hasSequentialOut = false;
+      let clkSignal = null;
+      let clkPin = null;
+
+      for (const sel of selects) {
+        const sig = sel.dataset.signal;
+        const role = sel.dataset.role;
+        const pin = parseInt(sel.value, 10);
+
+        if (role === "output") {
+          if (sig.toLowerCase().endsWith(".d")) {
+            hasSequentialOut = true;
+          }
+          if (device === "GAL16V8" && (pin === 1 || (pin >= 2 && pin <= 9) || pin === 11)) {
+            warnings.push(
+              `Salida "${sig}" asignada al Pin ${pin} (solo entrada). En GAL16V8 las salidas requieren pines de macrocélula 12–19.`
+            );
+          } else if (device === "GAL22V10" && ((pin >= 2 && pin <= 13) || pin === 1)) {
+            warnings.push(
+              `Salida "${sig}" asignada al Pin ${pin} (solo entrada). En GAL22V10 las salidas requieren pines de macrocélula 14–23.`
+            );
+          } else if (device === "CY37032" && [10, 13, 32, 33, 35].includes(pin)) {
+            warnings.push(
+              `Salida "${sig}" asignada al Pin ${pin} (entrada dedicada en CY37032VP44). Usa un pin de macrocélula I/O.`
+            );
+          }
+          if (outPins.has(pin)) {
+            warnings.push(`Conflicto: el Pin ${pin} está asignado a las salidas "${outPins.get(pin)}" y "${sig}".`);
+          } else {
+            outPins.set(pin, sig);
+          }
+        } else {
+          if (sig.toLowerCase() === "clk" || sig.toLowerCase() === "clock") {
+            clkSignal = sig;
+            clkPin = pin;
+          }
+          if (inPins.has(pin)) {
+            warnings.push(`Conflicto: el Pin ${pin} está asignado a las entradas "${inPins.get(pin)}" y "${sig}".`);
+          } else {
+            inPins.set(pin, sig);
+          }
+        }
+      }
+
+      if (device === "GAL22V10" || device === "GAL16V8") {
+        if (clkSignal !== null && clkPin !== 1) {
+          warnings.push(
+            `Señal de reloj "${clkSignal}" asignada al Pin ${clkPin}. Para lógica secuencial en ${device} debe ir en el Pin 1 (CLK).`
+          );
+        } else if (hasSequentialOut && clkSignal === null) {
+          const pin1Used = Array.from(inPins.entries()).some(([, s]) => s.toLowerCase() === "clk");
+          if (!pin1Used) {
+            warnings.push(
+              `Diseño secuencial (.d) detectado: asegúrate de conectar el reloj síncrono al Pin 1 (CLK) del ${device}.`
+            );
+          }
+        }
+      }
+
+      if (warnings.length > 0) {
+        pinWarningBanner.textContent = warnings.map((w) => `⚠ ${w}`).join("\n");
+        pinWarningBanner.classList.add("visible");
+      } else {
+        pinWarningBanner.textContent = "";
+        pinWarningBanner.classList.remove("visible");
+      }
+    }
+
+    function lookupVhdlPin(sig) {
+      if (Object.prototype.hasOwnProperty.call(vhdlPinMap, sig)) {
+        return vhdlPinMap[sig];
+      }
+      if (sig.toLowerCase().endsWith(".d")) {
+        const base = sig.slice(0, -2);
+        if (Object.prototype.hasOwnProperty.call(vhdlPinMap, base)) {
+          return vhdlPinMap[base];
+        }
+      }
+      return undefined;
+    }
+
+    function renderPinPlanner(plaText) {
+      const device = deviceSelector.value || "GAL22V10";
+      const profile = DEVICE_PROFILES[device] ?? DEVICE_PROFILES.GAL22V10;
+      pinPlannerMeta.textContent = profile.meta;
+
+      const { inputs, outputs } = extractPlaSignals(plaText);
+      pinPlannerGrid.innerHTML = "";
+      pinWarningBanner.textContent = "";
+      pinWarningBanner.classList.remove("visible");
+      vhdlPinConflicts = [];
+
+      if (inputs.length === 0 && outputs.length === 0) {
+        pinPlannerGrid.innerHTML = `<div class="panel-meta">No hay señales para mapear.</div>`;
+        return;
+      }
+
+      const buildGroup = (title, signals, role, allowedPins, defaultPins) => {
+        const group = document.createElement("div");
+        group.className = "pin-group";
+        const heading = document.createElement("h3");
+        heading.textContent = title;
+        group.appendChild(heading);
+
+        const usedDefaults = new Set();
+        for (const sig of signals) {
+          const vhdlPin = lookupVhdlPin(sig);
+          if (vhdlPin !== undefined && allowedPins.includes(vhdlPin)) {
+            usedDefaults.add(vhdlPin);
+          }
+        }
+        const clkDefaultPin = device === "CY37032" ? 10 : 1;
+        const defaultFor = (sig, idx) => {
+          const vhdlPin = lookupVhdlPin(sig);
+          if (vhdlPin !== undefined) {
+            if (allowedPins.includes(vhdlPin)) {
+              return vhdlPin;
+            }
+            vhdlPinConflicts.push(
+              `Atributo VHDL pide Pin ${vhdlPin} para ${role === "input" ? "entrada" : "salida"} "${sig}", pero no es válido en ${device}. Se usó asignación automática.`
+            );
+          }
+          if (role === "input" && (sig.toLowerCase() === "clk" || sig.toLowerCase() === "clock")) {
+            usedDefaults.add(clkDefaultPin);
+            return clkDefaultPin;
+          }
+          for (const candidate of defaultPins) {
+            if (!usedDefaults.has(candidate)) {
+              usedDefaults.add(candidate);
+              return candidate;
+            }
+          }
+          return defaultPins[idx % defaultPins.length];
+        };
+
+        if (role === "input" && signals.some((s) => s.toLowerCase() === "clk" || s.toLowerCase() === "clock")) {
+          usedDefaults.add(clkDefaultPin);
+        }
+
+        signals.forEach((sig, idx) => {
+          const row = document.createElement("div");
+          row.className = "pin-row";
+
+          const sigWrap = document.createElement("div");
+          sigWrap.className = "pin-sig-wrap";
+
+          const label = document.createElement("span");
+          label.className = "pin-sig-name";
+          label.textContent = sig;
+          label.title = sig;
+          sigWrap.appendChild(label);
+
+          const vhdlPin = lookupVhdlPin(sig);
+          const vhdlMatched = vhdlPin !== undefined && allowedPins.includes(vhdlPin);
+          if (vhdlMatched) {
+            row.classList.add("pin-vhdl-locked");
+            const badge = document.createElement("span");
+            badge.className = "pin-vhdl-badge";
+            badge.textContent = "Fijado por VHDL";
+            badge.title = `Asignado automáticamente a Pin ${vhdlPin} desde el atributo pin_numbers del VHDL`;
+            sigWrap.appendChild(badge);
+          }
+
+          const select = document.createElement("select");
+          select.dataset.signal = sig;
+          select.dataset.role = role;
+
+          const chosenDefault = defaultFor(sig, idx);
+          for (const pin of allowedPins) {
+            const opt = document.createElement("option");
+            opt.value = String(pin);
+            opt.textContent = profile.formatPin(pin);
+            if (pin === chosenDefault) opt.selected = true;
+            select.appendChild(opt);
+          }
+
+          select.addEventListener("change", validatePinPlanner);
+          row.appendChild(sigWrap);
+          row.appendChild(select);
+          group.appendChild(row);
+        });
+
+        return group;
+      };
+
+      if (inputs.length > 0) {
+        pinPlannerGrid.appendChild(
+          buildGroup("Entradas (.ilb)", inputs, "input", profile.inputPins, profile.inputPins)
+        );
+      }
+      if (outputs.length > 0) {
+        pinPlannerGrid.appendChild(
+          buildGroup("Salidas (.ob)", outputs, "output", profile.outputSelectPins, profile.defaultOutputPins)
+        );
+      }
+
+      validatePinPlanner();
+    }
+
+    function collectPinMapping() {
+      const map = {};
+      for (const sel of pinPlannerGrid.querySelectorAll("select[data-signal]")) {
+        const pin = parseInt(sel.value, 10);
+        if (!Number.isNaN(pin)) {
+          map[sel.dataset.signal] = pin;
+        }
+      }
+      return map;
+    }
+
+    function executeMinimization() {
+      clearError();
+
+      const inputText = plaInput.value;
+      const inRows = countCubeRows(inputText);
+
+      const t0 = performance.now();
+      try {
+        const minimized = run_espresso(inputText);
+        const elapsedMs = performance.now() - t0;
+        const outRows = countCubeRows(minimized);
+
+        plaOutput.value = minimized;
+        eqnOutput.value = pla_to_eqn_wasm(minimized);
+        renderPinPlanner(minimized);
+        downloadJedBtn.disabled = !minimized;
+        timePill.textContent = `Tiempo: ${elapsedMs.toFixed(2)} ms`;
+        statsPill.textContent = `Filas: ${inRows} → ${outRows}`;
+      } catch (err) {
+        const elapsedMs = performance.now() - t0;
+        plaOutput.value = "";
+        eqnOutput.value = "";
+        pinPlannerGrid.innerHTML = `<div class="panel-meta">Minimiza un diseño .pla válido para asignar pines.</div>`;
+        pinWarningBanner.classList.remove("visible");
+        downloadJedBtn.disabled = true;
+        timePill.textContent = `Tiempo: ${elapsedMs.toFixed(2)} ms`;
+        statsPill.textContent = "Filas: error";
+        showError("Error al procesar el PLA", err);
+      }
+    }
+
+    presetSelect.addEventListener("change", () => {
+      plaInput.value = PRESETS[presetSelect.value] ?? "";
+      if (!runBtn.disabled) {
+        executeMinimization();
+      }
+    });
+
+    runBtn.addEventListener("click", executeMinimization);
+
+    plaInput.addEventListener("keydown", (ev) => {
+      if ((ev.ctrlKey || ev.metaKey) && ev.key === "Enter" && !runBtn.disabled) {
+        ev.preventDefault();
+        executeMinimization();
+      }
+    });
+
+    deviceSelector.addEventListener("change", () => {
+      if (plaOutput.value) {
+        renderPinPlanner(plaOutput.value);
+      } else {
+        const profile = DEVICE_PROFILES[deviceSelector.value] ?? DEVICE_PROFILES.GAL22V10;
+        pinPlannerMeta.textContent = profile.meta;
+      }
+    });
+
+    downloadJedBtn.addEventListener("click", () => {
+      if (!plaOutput.value) return;
+      clearError();
+      try {
+        const deviceId = deviceSelector.value || "GAL22V10";
+        const pinMapJson = JSON.stringify(collectPinMapping());
+        const jedText = pla_to_jedec_wasm(plaOutput.value, deviceId, pinMapJson);
+        const blob = new Blob([jedText], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "design.jed";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      } catch (err) {
+        showError("Error al generar .JED", err);
+      }
+    });
+
+    copyBtn.addEventListener("click", async () => {
+      if (!plaOutput.value) return;
+      await navigator.clipboard.writeText(plaOutput.value);
+      const original = copyBtn.textContent;
+      copyBtn.textContent = "¡Copiado!";
+      setTimeout(() => {
+        copyBtn.textContent = original;
+      }, 1200);
+    });
+
+    copyEqnBtn.addEventListener("click", async () => {
+      if (!eqnOutput.value) return;
+      await navigator.clipboard.writeText(eqnOutput.value);
+      const original = copyEqnBtn.textContent;
+      copyEqnBtn.textContent = "¡Copiado!";
+      setTimeout(() => {
+        copyEqnBtn.textContent = original;
+      }, 1200);
+    });
+
+    themeBtn.addEventListener("click", () => {
+      const html = document.documentElement;
+      const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      html.setAttribute("data-theme", next);
+    });
+
+    prsPickBtn.addEventListener("click", () => prsFileInput.click());
+
+    prsFileInput.addEventListener("change", async () => {
+      if (prsFileInput.files && prsFileInput.files[0]) {
+        await handleFile(prsFileInput.files[0]);
+        prsFileInput.value = "";
+      }
+    });
+
+    for (const evtName of ["dragenter", "dragover"]) {
+      prsDropzone.addEventListener(evtName, (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        prsDropzone.classList.add("dragover");
+      });
+    }
+
+    for (const evtName of ["dragleave", "drop"]) {
+      prsDropzone.addEventListener(evtName, (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        prsDropzone.classList.remove("dragover");
+      });
+    }
+
+    prsDropzone.addEventListener("drop", async (ev) => {
+      const file = ev.dataTransfer?.files?.[0];
+      if (file) {
+        await handleFile(file);
+      }
+    });
+
+    prsSampleBtn.addEventListener("click", async () => {
+      try {
+        const resp = await fetch("../warp_test/test.prs");
+        if (!resp.ok) {
+          throw new Error(`HTTP ${resp.status}`);
+        }
+        const buf = await resp.arrayBuffer();
+        processPrsBytes("warp_test/test.prs", new Uint8Array(buf));
+      } catch (err) {
+        errorBanner.textContent = `No se pudo cargar ../warp_test/test.prs: ${String(err)}`;
+        errorBanner.classList.add("visible");
+      }
+    });
+
+    // Carga inicial del preset seleccionado
+    plaInput.value = PRESETS[presetSelect.value];
+
+    try {
+      await init();
+      wasmStatus.classList.add("ready");
+      wasmStatusText.textContent = "Wasm listo";
+      runBtn.disabled = false;
+      prsPickBtn.disabled = false;
+      prsSampleBtn.disabled = false;
+      executeMinimization();
+    } catch (err) {
+      wasmStatus.classList.add("error");
+      wasmStatusText.textContent = "Error cargando Wasm";
+      errorBanner.textContent =
+        `No se pudo inicializar ../pkg/espresso_rs.js (${String(err)}). ` +
+        `Asegúrate de servir la raíz del repositorio por HTTP (ej. ./serve.sh).`;
+      errorBanner.classList.add("visible");
+    }
+  </script>
+</body>
+</html>

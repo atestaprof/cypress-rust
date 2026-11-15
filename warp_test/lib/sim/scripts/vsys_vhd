@@ -1,0 +1,18 @@
+#
+#	Copyright Cypress Semiconductor, 2001
+#\
+    if ($?CYPRESS_DIR == 0) then
+    set CYPRESS_DIR $env(CYPRESS_DIR)
+#\
+    endif
+
+vlib cypress
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/cypress.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/rtlpkg.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/lpmpkg.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/sim.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/ttfctn.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/int_arith.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/std_arth.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/bit_arth.vhd
+vcom -93 -quiet -work cypress -nowarn 5 -nowarn 3  $CYPRESS_DIR/lib/sim/presynth/vhd/exemplar.vhd

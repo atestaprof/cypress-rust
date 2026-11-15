@@ -1,0 +1,548 @@
+--
+--	Copyright Cypress Semiconductor Corporation, 1994,1995,1996
+--	  as an unpublished work.
+--
+--------------------------------------------------------------------------
+--		Components for Generic RTL.				--
+--------------------------------------------------------------------------
+
+PACKAGE rtlpkg IS
+
+component cy_bufoe
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: inout x01z;
+	    yfb	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_bufoe : component is bufoe_type;
+
+component cy_dltch
+    port   (d	: in bit;
+	    e	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_dff
+    port   (d	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_dff : component is dff_type;
+
+component cy_xdff
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_xdff : component is xdff_type;
+
+component cy_jkff
+    port   (j	: in bit;
+	    k	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_buf
+    port   (x	: in bit;
+	    y	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_buf : component is buf_type;
+
+component cy_srlch
+    port   (s	: in bit;
+	    r	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_srff
+    port   (s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_dsrff
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_dsrff : component is dsrff_type;
+
+    component cy_dpcff		-- D type flip flop with async. set and reset.
+	port (
+	    d	: IN bit;		-- D input to register.
+	    s	: IN bit;		-- Set input Async.
+	    r	: IN bit;		-- Reset input Async.
+	    clk	: IN bit;		-- Positive edge Clock.
+	    q	: OUT bit		-- Output from register.
+	);
+    end component;
+    attribute atomic_rtl of cy_dpcff : component is dpcff_type;
+
+component cy_tsrff
+    port   (t	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_tff
+    port   (t	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_xbuf
+    port   (x1	: in bit;
+	    x2	: in bit;
+	    q	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_xbuf : component is xbuf_type;
+
+component cy_triout
+    port   (x	: in bit;
+	    oe	: in bit;
+	    y	: out x01z);
+end component;
+
+    attribute atomic_rtl of cy_triout : component is triout_type;
+
+-- c335 specials
+
+    signal gsr	: bit;				-- Global sync. reset
+    attribute node_num	of gsr : signal is 29;	-- is node 29.
+
+    signal gss	: bit;				-- Global sync. set
+    attribute node_num	of gss : signal is 30;	-- is node 30.
+
+    component MC_C335
+	generic(
+	    has_output_register:boolean:= true
+	);
+	port(
+	    x1	: in bit;		-- Exor Macro Input (Single).
+	    x2	: in bit;		-- Exor Macro Input (Multiple).
+	    clk	: in bit;		-- Positive edge, output reg, clock.
+	    clk_i	: in bit;	-- Positive edge, input reg, clock.
+	    oe	: in bit;		-- Output Enable.
+	    q_bar	: out bit;	-- Output from output register.
+	    q_i	: out bit;		-- Output from input register.
+	    y	: inout x01z;	-- Macro cell In/Out Pin.
+	    yfb	: out bit		-- Feedback bit from Pin.
+	);
+    end component;
+    attribute atomic_rtl of MC_C335 : component is MC_C335_type;
+
+--  Schematic versions of macrocell.
+
+    component MC335NR                   --  Non-registered.
+	port(
+	    x1	: in bit;		-- Exor Macro Input (Single).
+	    x2	: in bit;		-- Exor Macro Input (Multiple).
+	    clk	: in bit;		-- Positive edge, output reg, clock.
+	    clk_i	: in bit;	-- Positive edge, input reg, clock.
+	    oe	: in bit;		-- Output Enable.
+	    q_bar	: out bit;	-- Output from output register.
+	    q_i	: out bit;		-- Output from input register.
+	    y	: inout x01z;	-- Macro cell In/Out Pin.
+	    yfb	: out bit		-- Feedback bit from Pin.
+	);
+    end component;
+
+    component MC335RG                   --  Registered.
+	port(
+	    x1	: in bit;		-- Exor Macro Input (Single).
+	    x2	: in bit;		-- Exor Macro Input (Multiple).
+	    clk	: in bit;		-- Positive edge, output reg, clock.
+	    clk_i	: in bit;	-- Positive edge, input reg, clock.
+	    oe	: in bit;		-- Output Enable.
+	    q_bar	: out bit;	-- Output from output register.
+	    q_i	: out bit;		-- Output from input register.
+	    y	: inout x01z;	-- Macro cell In/Out Pin.
+	    yfb	: out bit		-- Feedback bit from Pin.
+	);
+    end component;
+
+    component ir_C335
+	port(
+	    d_i	: in bit;		-- D input to input register.
+	    clk_i	: in bit;	-- Positive edge, input reg, clock.
+	    q_i	: out bit		-- Output from input register.
+	);
+    end component;
+    attribute atomic_rtl of ir_C335 : component is ir_C335_type;
+
+component cy_dsrffe
+    port   (d	: in bit;
+	    s	: in bit;
+	    r	: in bit;
+	    e	: in bit;
+	    clk	: in bit;
+	    q	: out bit);
+end component;
+
+component cy_c39kcarry
+    port   (SelIn	: in bit;
+	    Cpt0	: in bit;
+	    Cpt1	: in bit;
+	    SelOut	: out bit);
+end component;
+
+component cy_c39kxor
+    port   (SIn 	: in bit;
+	    PtmPts	: in bit;
+	    XorOut	: out bit);
+end component;
+
+component cy_c39kmultiply
+    generic(IsSigned	: BOOLEAN := FALSE;
+	DataWidthA	: positive;
+	DataWidthB	: positive;
+	DataWidthP	: positive;
+
+	Hint		: goal_type := memory);
+
+    port   (Data_A	: in  bit_vector(DataWidthA-1 downto 0);
+	    Data_B	: in  bit_vector(DataWidthB-1 downto 0);
+	    Product	: out bit_vector(DataWidthP-1 downto 0));
+end component;
+
+    attribute atomic_rtl of cy_c39kmultiply : component is not_allowed_type;
+
+TYPE fdbk_source IS (DIRECT, CLOCK_TREE, EXTERNAL);
+
+component cy_c39kpll
+    generic(feedback	: fdbk_source	:= DIRECT;
+	    multiply	: positive	:= 1;
+	    gclk0_phase	: natural	:= 0;
+	    gclk0_divide: positive	:= 1;
+	    gclk1_phase	: natural	:= 0;
+	    gclk1_divide: positive	:= 1;
+	    gclk2_phase	: natural	:= 0;
+	    gclk2_divide: positive	:= 1;
+	    gclk3_phase	: natural	:= 0;
+	    gclk3_divide: positive	:= 1;
+	    input_freq	: natural	:= 0;
+	    ext_fdbk_delay_ps	: natural	:= 0;
+	    ext_fdbk_port_out	: string:="");
+    port   (pll_in	: in  bit;
+	    ext_fdbk	: in  bit	:= '0';
+	    lock_detect	: out bit;
+	    gclk0	: out bit;
+	    gclk1	: out bit;
+	    gclk2	: out bit;
+	    gclk3	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_c39kpll : component is not_allowed_type;
+
+component cy_25g01serdes
+
+    port   (txd		: in  bit_vector (15 downto 0) ;
+	    fifo_rstb	: in  bit ;
+	    loop_time	: in  bit ;
+	    diagloop	: in  bit ;
+	    loopa	: in  bit ;
+	    lineloop	: in  bit ;
+	    resetb	: in  bit ;
+	    pwrdnb	: in  bit ;
+	    lockrefb	: in  bit ;
+	    refclk_n	: in  bit ;
+	    refclk_p	: in  bit ;
+	    serial_in_n : in  bit ;
+	    serial_in_p	: in  bit ;
+	    sd		: in  bit ;
+	    serial_out_n: out bit ;
+	    serial_out_p: out bit ;
+	    fifo_err	: out bit ;
+	    txclk	: out bit ;
+	    rxd		: out bit_vector (15 downto 0) ;
+	    rxclk	: out bit ;
+	    lfib	: out bit );
+
+end component;
+
+    attribute atomic_rtl of cy_25g01serdes : component is not_allowed_type;
+
+component cy_15g04serdes
+
+    port (  txda		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdb		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdc		: in	bit_vector(7 downto 0) := (others => '0');
+	    txdd		: in	bit_vector(7 downto 0) := (others => '0');
+	    txpera		: out	bit;
+	    txperb		: out	bit;
+	    txperc		: out	bit;
+	    txperd		: out	bit;
+	    txcta		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctb		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctc		: in	bit_vector(1 downto 0) := (others => '0');
+	    txctd		: in	bit_vector(1 downto 0) := (others => '0');
+
+	    txclka		: in	bit;
+
+	    txclko_p		: out	bit;
+
+	    txrate		: in	bit;
+	    txmode		: in	bit_vector(1 downto 0);
+	    txcksel		: in	bit;
+	    txrstb		: in	bit;
+
+	    rxda		: out	bit_vector(7 downto 0);
+	    rxdb		: out	bit_vector(7 downto 0);
+	    rxdc		: out	bit_vector(7 downto 0);
+	    rxdd		: out	bit_vector(7 downto 0);
+	    rxsta		: out	bit_vector(2 downto 0);
+	    rxstb		: out	bit_vector(2 downto 0);
+	    rxstc		: out	bit_vector(2 downto 0);
+	    rxstd		: out	bit_vector(2 downto 0);
+
+	    rxrate		: in	bit;
+	    rfen		: in	bit;
+	    rxmode		: in	bit_vector(1 downto 0);
+	    rxcksel		: in	bit;
+	    framchar		: in	bit;
+	    rfmode		: in	bit;
+	    decmode		: in	bit;
+
+	    spdsel		: in	bit;
+	    rxclka_p		: out	bit;
+	    rxclkb_p		: inout	bit;
+	    rxclkc_p		: out	bit;
+	    rxclkd_p		: inout	bit;
+
+	    refclk_p		: in	bit;
+	    refclk_n		: in	bit;
+	    serial_outa1_p	: out	bit;
+	    serial_outb1_p	: out	bit;
+	    serial_outc1_p	: out	bit;
+	    serial_outd1_p	: out	bit;
+	    serial_outa2_p	: out	bit;
+	    serial_outb2_p	: out	bit;
+	    serial_outc2_p	: out	bit;
+	    serial_outd2_p	: out	bit;
+	    serial_ina1_p	: in	bit;
+	    serial_inb1_p	: in	bit;
+	    serial_inc1_p	: in	bit;
+	    serial_ind1_p	: in	bit;
+	    serial_ina2_p	: in	bit;
+	    serial_inb2_p	: in	bit;
+	    serial_inc2_p	: in	bit;
+	    serial_ind2_p	: in	bit;
+	    serial_outa1_n	: out	bit;
+	    serial_outb1_n	: out	bit;
+	    serial_outc1_n	: out	bit;
+	    serial_outd1_n	: out	bit;
+	    serial_outa2_n	: out	bit;
+	    serial_outb2_n	: out	bit;
+	    serial_outc2_n	: out	bit;
+	    serial_outd2_n	: out	bit;
+	    serial_ina1_n	: in	bit;
+	    serial_inb1_n	: in	bit;
+	    serial_inc1_n	: in	bit;
+	    serial_ind1_n	: in	bit;
+	    serial_ina2_n	: in	bit;
+	    serial_inb2_n	: in	bit;
+	    serial_inc2_n	: in	bit;
+	    serial_ind2_n	: in	bit;
+	    insela		: in	bit;
+	    inselb		: in	bit;
+	    inselc		: in	bit;
+	    inseld		: in	bit;
+	    sdasel		: in	bit;
+	    lpen		: in	bit;
+	    oele		: in	bit;
+	    bistle		: in	bit;
+	    rxle		: in	bit;
+	    boe			: in	bit_vector(7 downto 0);
+	    bondst		: inout	bit_vector(1 downto 0);
+	    masterb		: in	bit;
+	    bond_all		: inout	bit;
+	    bond_inhb		: in	bit;
+	    lfiab		: out	bit;
+	    lfibb		: out	bit;
+	    lficb		: out	bit;
+	    lfidb		: out	bit;
+	    trstzb		: in	bit);
+
+end component;
+
+    attribute atomic_rtl of cy_15g04serdes : component is not_allowed_type;
+
+component cy_c39kdualport
+    generic(DataWidth	: positive := 8;
+	AddressWidth	: positive := 11;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdataA_reg	: BOOLEAN  := FALSE;
+	outdataB_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (DIn_A	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    DIn_B	: in bit_vector(DataWidth-1 downto 0) :=(others => '0');
+	    Addr_A	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    Addr_B	: in bit_vector(AddressWidth-1 downto 0):=(others=>'0');
+	    WEA	        : in  bit := '0';
+	    WEB	        : in  bit := '0';
+	    InClk_A	: in  bit := '0';
+	    OutClk_A	: in  bit := '0';
+	    OutRegA_AR  : in  bit := '0';
+	    InClk_B	: in  bit := '0';
+	    OutClk_B	: in  bit := '0';
+	    OutRegB_AR  : in  bit := '0';
+	    Addr_matchb	: out bit;
+	    DOut_A	: out bit_vector(DataWidth-1 downto 0); 
+	    DOut_B	: out bit_vector(DataWidth-1 downto 0));
+end component;
+
+    attribute atomic_rtl of cy_c39kdualport : component is not_allowed_type;
+
+component cy_c39kfifo
+    generic(DataWidth	: positive := 8;
+	NumWords	: positive := 512;
+	PAFE_Distance	: natural  := 0);
+    port   (DIn	        : in  bit_vector(DataWidth-1 downto 0);
+	    DOut	: out bit_vector(DataWidth-1 downto 0);
+	    ENR	        : in bit := '0';
+	    ENW   	: in bit := '0';
+	    CKR         : in bit := '0';
+	    CKW         : in bit := '0';
+	    MRb	        : in bit := '0';
+	    EFb	        : out bit;
+	    HFb	        : out bit;
+	    PAFEb	: out bit);
+end component;
+
+    attribute atomic_rtl of cy_c39kfifo : component is not_allowed_type;
+
+component cy_c39ksingleport
+    generic(DataWidth  	: positive := 8;
+	AddressWidth	: positive := 13;
+	indata_reg	: BOOLEAN  := TRUE;
+	addr_ctrl_reg	: BOOLEAN  := TRUE;
+	outdata_reg	: BOOLEAN  := FALSE;
+	FileName	: string   := "");
+    port   (Din		: in bit_vector(DataWidth-1 downto 0):=(others => '0');
+	    Addr	: in bit_vector(AddressWidth-1 downto 0);
+	    WE		: in bit := '0';
+	    InClk	: in bit := '0';
+	    OutClk	: in bit := '0';
+	    OutReg_AR	: in bit := '0';
+	    DOut	: out bit_vector(DataWidth-1 downto 0));
+end component;
+
+    attribute atomic_rtl of cy_c39ksingleport : component is not_allowed_type;
+
+END rtlpkg;
+
+--------------------------------------------------------------------------
+--	Special Macro-cell definitions
+--	Entities and  Architectrues
+--------------------------------------------------------------------------
+
+library cypress;
+use work.rtlpkg.all;
+
+entity MC335NR is                       --  Non-registered.
+    port(
+	x1	: in bit;		-- Exor Macro Input (Single).
+	x2	: in bit;		-- Exor Macro Input (Multiple).
+	clk	: in bit;		-- Positive edge, output reg, clock.
+	clk_i	: in bit;		-- Positive edge, input reg, clock.
+	oe	: in bit;		-- Output Enable.
+	q_bar	: out bit;		-- Output from output register.
+	q_i	: out bit;		-- Output from input register.
+	y	: inout x01z;	-- Macro cell In/Out Pin.
+	yfb	: out bit		-- Feedback bit from Pin.
+    );
+end MC335NR;
+
+ARCHITECTURE archMC335NR OF MC335NR IS
+
+	signal d,d_bar,q,yin : bit;
+
+BEGIN
+
+	U0: cy_xbuf port map (x1,x2,d);
+	d_bar <= not d;
+	U1: cy_bufoe port map (d_bar,oe,y,yin);
+	yfb <= yin;
+	U2: cy_dff port map (d,clk,q);
+	q_bar <= not q;
+	U3: cy_dff port map (yin,clk_i,q_i);
+
+END archMC335NR;
+
+library cypress;
+use work.rtlpkg.all;
+
+entity MC335RG is                       --  Registered.
+    port(
+	x1	: in bit;		-- Exor Macro Input (Single).
+	x2	: in bit;		-- Exor Macro Input (Multiple).
+	clk	: in bit;		-- Positive edge, output reg, clock.
+	clk_i	: in bit;		-- Positive edge, input reg, clock.
+	oe	: in bit;		-- Output Enable.
+	q_bar	: out bit;		-- Output from output register.
+	q_i	: out bit;		-- Output from input register.
+	y	: inout x01z;		-- Macro cell In/Out Pin.
+	yfb	: out bit		-- Feedback bit from Pin.
+    );
+end MC335RG;
+
+ARCHITECTURE archMC335RG OF MC335RG IS
+
+	signal q,qb,yin : bit;
+
+BEGIN
+
+	U1: cy_xdff port map (x1,x2,clk,q);
+	qb <= not q;
+	q_bar <= not q;
+	U2: cy_bufoe port map (qb,oe,y,yin);
+	yfb <= yin;
+	U3: cy_dff port map (yin,clk_i,q_i);
+
+END archMC335RG;
+
+--------------------------------------------------------------------------
+--      Here is the device entity.
+--------------------------------------------------------------------------
+
+ENTITY C335 IS
+PORT(	pin1  :IN	bit;
+	pin2  :IN	bit;
+	pin3  :IN	bit;
+	pin4  :in	bit;
+	pin5  :in	bit;
+	pin6  :in	bit;
+	pin7  :in	bit;
+	pin9  :in	bit;
+	pin10 :in	bit;
+	pin11 :IN	bit;
+	pin13 :IN	bit;
+	pin12 :IN	bit;
+	pin14 :in	bit;
+	pin15 :INOUT	x01z;
+	pin16 :INOUT	x01z;
+	pin17 :INOUT	x01z;
+	pin18 :INOUT	x01z;
+	pin19 :INOUT	x01z;
+	pin20 :INOUT	x01z;
+	pin23 :INOUT	x01z;
+	pin24 :INOUT	x01z;
+	pin25 :INOUT	x01z;
+	pin26 :INOUT	x01z;
+	pin27 :INOUT	x01z;
+	pin28 :INOUT	x01z);
+END C335;

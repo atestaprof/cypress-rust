@@ -254,6 +254,10 @@ impl Pla {
                         };
                         pla_type = Some(t);
                     }
+                    ".phase" => {
+                        // Optional output phase specification (e.g. `.phase 1` or `.phase 101`).
+                        let _ = toks.next();
+                    }
                     ".e" | ".end" => break,
                     other => {
                         return Err(PlaError::UnknownDirective {

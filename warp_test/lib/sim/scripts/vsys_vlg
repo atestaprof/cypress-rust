@@ -1,0 +1,12 @@
+#
+#	Copyright Cypress Semiconductor, 2001
+#\
+    if ($?CYPRESS_DIR == 0) then
+    set CYPRESS_DIR $env(CYPRESS_DIR)
+#\
+    endif
+
+vlib cyp_vlg
+vlog -quiet -work cyp_vlg  $CYPRESS_DIR/lib/sim/presynth/vlg/rtl.v
+vlog -quiet -work cyp_vlg  $CYPRESS_DIR/lib/sim/presynth/vlg/lpm.v
+vlog -quiet -work cyp_vlg  $CYPRESS_DIR/lib/sim/presynth/vlg/cygates.v

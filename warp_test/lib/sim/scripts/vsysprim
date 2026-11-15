@@ -1,0 +1,10 @@
+#
+#	Copyright Cypress Semiconductor, 2001
+#\
+    if ($?CYPRESS_DIR == 0) then
+    set CYPRESS_DIR $env(CYPRESS_DIR)
+#\
+    endif
+
+vlib primitive
+vcom -93 -quiet -work primitive  $CYPRESS_DIR/lib/sim/postsynth/vhd/primitive.vhd
