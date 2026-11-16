@@ -15,10 +15,11 @@
 # Archivos de análisis de Ghidra MCP
 /pyghidra_mcp_projects/
 
-# Archivos generados en pruebas (mantiene los .vhd fuente)
-/warp_test/*.prs
+# Archivos temporales generados en pruebas (mantiene los .vhd fuente y fixtures .prs)
 /warp_test/*.jed
 /warp_test/*.rpt
 /warp_test/*.pla
 /warp_test/*.wde
 /warp_test/*.eqn
+reference.jed
+generated.jed

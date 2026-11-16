@@ -26,6 +26,89 @@ Reimplementación segura en Rust puro (100% compatible con `wasm32-unknown-unkno
 
 ---
 
+## Requisitos Previos e Instalación
+
+No necesitas Wine ni los binarios propietarios de Cypress Warp para compilar, ejecutar pruebas, usar el CLI ni levantar la interfaz web.
+
+### Linux (Debian / Ubuntu)
+
+1. **Instalar herramientas de compilación C y Python 3** (necesario para compilar `minopt.c` mediante el crate `cc` y para servir la interfaz web):
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y build-essential gcc curl python3
+   ```
+
+2. **Instalar Rust (`rustup`)**:
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   source "$HOME/.cargo/env"
+   ```
+
+3. **Instalar el target WebAssembly y `wasm-pack`**:
+   ```bash
+   rustup target add wasm32-unknown-unknown
+   cargo install wasm-pack
+   ```
+
+4. **Compilar el paquete WebAssembly** (obligatorio antes de abrir la interfaz web):
+   ```bash
+   wasm-pack build --target web -- --features wasm
+   ```
+
+5. **Levantar el servidor local**:
+   ```bash
+   ./serve.sh
+   ```
+   Luego abre `http://localhost:8080/www/index.html` en tu navegador (puedes indicar otro puerto: `./serve.sh 3000`).
+
+---
+
+### Windows (PowerShell)
+
+1. **Instalar Rust (`rustup`) y Python 3**:
+   - Descarga e instala Rust desde [rustup.rs](https://rustup.rs/) (asegúrate de contar con *Visual Studio C++ Build Tools* si el instalador lo solicita).
+   - Instala Python 3 desde [python.org](https://www.python.org/downloads/) o Microsoft Store (para el servidor web local).
+
+2. **Instalar el target WebAssembly y `wasm-pack`**:
+   ```powershell
+   rustup target add wasm32-unknown-unknown
+   cargo install wasm-pack
+   ```
+
+3. **Compilar el paquete WebAssembly** (obligatorio antes de abrir la interfaz web):
+   ```powershell
+   wasm-pack build --target web -- --features wasm
+   ```
+
+4. **Levantar el servidor local**:
+   ```powershell
+   python -m http.server 8080
+   ```
+   Luego abre `http://localhost:8080/www/index.html` en tu navegador.
+
+---
+
+## Uso por Línea de Comandos (CLI)
+
+Puedes generar archivos `.jed` directamente desde cualquier archivo `.prs` sin necesidad de Wine ni binarios propietarios:
+
+```bash
+cargo run --release --bin generate_jed -- warp_test/test.prs salida.jed CY37032
+```
+
+Dispositivos soportados: `GAL16V8`, `GAL22V10` y `CY37032`.
+
+---
+
+## Archivos Opcionales (Solo Auditoría E2E con Cypress Warp)
+
+Los siguientes recursos son **completamente opcionales** y están pensados únicamente para desarrolladores que cuenten con los binarios propietarios de Cypress Warp:
+
+- [`verify_jedec.sh`](verify_jedec.sh) + carpeta externa `galaxy/` (`galaxy/warp/bin/vhdlfe.exe` y `c37kfit.exe` ejecutados vía Wine): se utilizan únicamente para regenerar archivos `.prs` desde `.vhd` o ejecutar la auditoría E2E comparando bit a bit contra el fitter propietario.
+- Los fixtures `warp_test/*.prs` incluidos en el repositorio permiten ejecutar `cargo test` al 100% en cualquier máquina limpia sin `vhdlfe.exe` ni Wine.
+
+---
+
 ## Características Soportadas
 
 - **Parser binario `.prs` ([`src/prs_parser.rs`](src/prs_parser.rs)):**
@@ -70,7 +153,7 @@ También se soportan atributos por señal (`attribute pin_numbers of clk : signa
 
 ## Validación Bit-Perfect Match (E2E)
 
-El script [`verify_jedec.sh`](verify_jedec.sh) compila el diseño `.vhd` con `vhdlfe.exe` + `c37kfit.exe` (Cypress propietario) y lo compara bit a bit contra el pipeline puro en Rust (`prs_parser` → `prs_to_pla` → `espresso` → `jedec`), logrando **coincidencia exacta (`diff` código 0)** en la matriz completa de 15,034 fusibles y el checksum `*C` para `CY37032VP44` (`./verify_jedec.sh warp_test/gal_native.vhd`), además del soporte verificado para SPLDs `GAL16V8` y `GAL22V10`.
+El script opcional [`verify_jedec.sh`](verify_jedec.sh) compila el diseño `.vhd` con `vhdlfe.exe` + `c37kfit.exe` (Cypress propietario, vía Wine) y lo compara bit a bit contra el pipeline puro en Rust (`prs_parser` → `prs_to_pla` → `espresso` → `jedec`), logrando **coincidencia exacta (`diff` código 0)** en la matriz completa de 15,034 fusibles y el checksum `*C` para `CY37032VP44` (`./verify_jedec.sh warp_test/gal_native.vhd`), además del soporte verificado para SPLDs `GAL16V8` y `GAL22V10`.
 
 ---
 

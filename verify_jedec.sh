@@ -2,6 +2,16 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WARP_DIR="${ROOT_DIR}/galaxy/warp"
+WARP_BIN="${WARP_DIR}/bin"
+
+if ! command -v wine >/dev/null 2>&1 || ! command -v winepath >/dev/null 2>&1 || [[ ! -d "${ROOT_DIR}/galaxy" || ! -d "${WARP_BIN}" ]]; then
+  echo "Aviso: verify_jedec.sh es un script opcional de validación cruzada para desarrolladores que cuenten con Wine y los binarios propietarios de Cypress Warp en la carpeta galaxy/."
+  echo "No se detectó Wine/winepath o la carpeta ${WARP_DIR}."
+  echo "Para compilar, ejecutar pruebas (cargo test), usar el CLI (generate_jed) o la interfaz WebAssembly no necesitas Wine ni galaxy/."
+  exit 0
+fi
+
 VHD_INPUT="${1:-warp_test/test.vhd}"
 
 if [[ ! -f "${ROOT_DIR}/${VHD_INPUT}" && ! -f "${VHD_INPUT}" ]]; then
@@ -28,9 +38,6 @@ REF_JED="${WORK_DIR}/reference.jed"
 GEN_JED="${WORK_DIR}/generated.jed"
 REF_NORM="${WORK_DIR}/reference.norm"
 GEN_NORM="${WORK_DIR}/generated.norm"
-
-WARP_DIR="${ROOT_DIR}/galaxy/warp"
-WARP_BIN="${WARP_DIR}/bin"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
