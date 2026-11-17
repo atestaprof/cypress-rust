@@ -5,12 +5,18 @@
 /target/
 **/*.rs.bk
 
-# Artefactos de WebAssembly y Producción
+# Artefactos de WebAssembly, Producción y Paquete Estudiantil
 /pkg/
 /dist/
+/student_bundle/
 
 # Binarios propietarios de Cypress y librerías
 /galaxy/
+/warp_test/lib/
+/warp_test/vhdlfe.exe
+/warp_test/vhdl.msg
+/warp_test/warp.rc
+/warp_test/run_fe.sh
 
 # Archivos de análisis de Ghidra MCP
 /pyghidra_mcp_projects/
@@ -18,8 +24,15 @@
 # Archivos temporales generados en pruebas (mantiene los .vhd fuente y fixtures .prs)
 /warp_test/*.jed
 /warp_test/*.rpt
+/warp_test/*.RPT
 /warp_test/*.pla
 /warp_test/*.wde
 /warp_test/*.eqn
+*.jed
+*.rpt
+*.RPT
+*.pla
+*.wde
+*.eqn
 reference.jed
 generated.jed

@@ -7,6 +7,13 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ ! -f "${ROOT_DIR}/pkg/espresso_rs.js" ]]; then
   echo "Error: No se encontró pkg/espresso_rs.js." >&2
+  echo "Compila primero el paquete WebAssembly ejecutando:" >&2
+  echo "  wasm-pack build --target web -- --features wasm" >&2
+  exit 1
+fi
+
+if [[ ! -f "${ROOT_DIR}/pkg/espresso_rs.js" ]]; then
+  echo "Error: No se encontró pkg/espresso_rs.js." >&2
   echo "Compila primero el paquete WebAssembly para evitar errores 404 en el navegador:" >&2
   echo "  wasm-pack build --target web -- --features wasm" >&2
   echo "O bien genera la distribución completa con:" >&2

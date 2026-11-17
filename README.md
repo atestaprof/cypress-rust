@@ -219,3 +219,67 @@ Ambos scripts compilan el binario WebAssembly optimizado para tamaño (`opt-leve
 1. Genera `dist/` ejecutando `./build_dist.sh` o `.\build_dist.ps1`.
 2. Sube el contenido de la carpeta `dist/` a la rama `gh-pages` (o configura **GitHub Pages** desde Actions / rama estática apuntando al contenido de `dist/`).
 3. Al abrir la URL publicada, toda la síntesis, minimización y generación JEDEC se ejecutará 100% en el navegador del estudiante mediante WebAssembly.
+
+---
+
+## Instalación desde Cero (Reproducibilidad en Linux y Windows)
+
+### Linux (Debian / Ubuntu)
+1. Instala las herramientas base de compilación, `curl`, `python3` y `git`:
+   ```bash
+   sudo apt update
+   sudo apt install -y build-essential curl git python3 pkg-config
+   ```
+2. Instala Rust mediante `rustup`:
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   source "$HOME/.cargo/env"
+   ```
+3. Agrega el target WebAssembly e instala `wasm-pack`:
+   ```bash
+   rustup target add wasm32-unknown-unknown
+   cargo install wasm-pack
+   ```
+4. Clona, prueba, compila y sirve localmente:
+   ```bash
+   git clone https://github.com/atestaprof/cypress-rust.git
+   cd cypress-rust
+   cargo test
+   wasm-pack build --target web -- --features wasm
+   ./serve.sh
+   ```
+
+### Windows (PowerShell)
+1. Instala **Microsoft C++ Build Tools** (Desktop development with C++) desde Visual Studio Installer.
+2. Descarga e instala Rust ejecutando `rustup-init.exe` desde [rustup.rs](https://rustup.rs/) (o vía `winget install Rustlang.Rustup`).
+3. Abre una nueva ventana de **PowerShell**, agrega el target WebAssembly e instala `wasm-pack`:
+   ```powershell
+   rustup target add wasm32-unknown-unknown
+   cargo install wasm-pack
+   ```
+4. Clona, prueba, compila y sirve localmente:
+   ```powershell
+   git clone https://github.com/atestaprof/cypress-rust.git
+   cd cypress-rust
+   cargo test
+   wasm-pack build --target web --release -- --features wasm
+   python -m http.server 8080
+   ```
+   Luego abre `http://localhost:8080/www/index.html` en tu navegador.
+
+---
+
+## Paquete Portátil para Estudiantes (`vhd2prs`)
+
+Para que los estudiantes conviertan sus archivos `.vhd` a `.prs` sin instalar toda la suite de Cypress Warp, puedes empaquetar la utilidad ligera `vhd2prs` ejecutando:
+
+```bash
+./build_student_bundle.sh
+```
+
+Esto genera `student_bundle/vhd2prs/` y el archivo comprimido `student_bundle/vhd2prs_portable.zip` (incluyendo únicamente `vhdlfe.exe`, `vhdl.msg`, `warp.rc`, `lib/ieee/`, `lib/common/`, `ejemplo_compuerta.vhd`, `vhd2prs.bat`, `vhd2prs.sh` y `LEEME_ESTUDIANTES.txt`).
+
+**Flujo para el estudiante:**
+1. Escribir su diseño `.vhd` usando `use work.cypress.all;` y `attribute pin_numbers`.
+2. Arrastrar el `.vhd` encima de **`vhd2prs.bat`** en Windows (o ejecutar `./vhd2prs.sh archivo.vhd` en Linux/macOS con Wine) para generar `<nombre>.prs`.
+3. Arrastrar el `.prs` resultante en **`https://atestaprof.github.io/cypress-rust/`** y descargar el `.jed`.

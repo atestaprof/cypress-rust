@@ -41,8 +41,26 @@ GEN_NORM="${WORK_DIR}/generated.norm"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+YELLOW='\033[0;33m'
 CYAN='\033[0;36m'
 NC='\033[0m'
+
+WARP_DIR="${WARP_DIR:-${ROOT_DIR}/galaxy/warp}"
+WARP_BIN="${WARP_BIN:-${WARP_DIR}/bin}"
+
+if ! command -v wine >/dev/null 2>&1 || ! command -v winepath >/dev/null 2>&1; then
+  echo -e "${YELLOW}Aviso: 'wine' / 'winepath' no están instalados en este entorno.${NC}"
+  echo "La verificación E2E contra las herramientas propietarias de Cypress requiere Wine y galaxy/."
+  echo "Puedes ejecutar las pruebas puras en Rust con: cargo test"
+  exit 0
+fi
+
+if [[ ! -f "${WARP_BIN}/vhdlfe.exe" || ! -f "${WARP_BIN}/c37kfit.exe" ]]; then
+  echo -e "${YELLOW}Aviso: No se encontraron los binarios propietarios en ${WARP_BIN}.${NC}"
+  echo "En una clonación limpia sin la carpeta galaxy/, la comparación E2E contra Cypress se omite."
+  echo "Ejecuta 'cargo test' para validar el motor completo en Rust usando los fixtures .prs incluidos."
+  exit 0
+fi
 
 echo -e "${CYAN}=== Paso B (Pre-build) & Paso A: Flujo Propietario Cypress ===${NC}"
 echo "Archivo VHDL: ${VHD_ABS}"
