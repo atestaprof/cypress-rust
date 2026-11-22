@@ -283,3 +283,27 @@ Esto genera `student_bundle/vhd2prs/` y el archivo comprimido `student_bundle/vh
 1. Escribir su diseño `.vhd` usando `use work.cypress.all;` y `attribute pin_numbers`.
 2. Arrastrar el `.vhd` encima de **`vhd2prs.bat`** en Windows (o ejecutar `./vhd2prs.sh archivo.vhd` en Linux/macOS con Wine) para generar `<nombre>.prs`.
 3. Arrastrar el `.prs` resultante en **`https://atestaprof.github.io/cypress-rust/`** y descargar el `.jed`.
+
+---
+
+## Guía de Instalación y Conversión VHDL (`vhd2prs`) en Debian (Trixie / Forky)
+
+El paquete portátil `vhd2prs` utiliza el frontend clásico de Cypress (`vhdlfe.exe`), el cual es un ejecutable de Windows de **32 bits (x86)**, para compilar archivos `.vhd` hacia el formato intermedio `.prs`.
+
+### ⚠️ Diagnóstico del Problema en Debian Trixie / Forky
+En versiones modernas de Debian (`Trixie` y `Forky`), intentar instalar Wine de forma tradicional mediante `apt` (`wine`, `wine32:i386` o `winehq-stable`) suele fallar por dos motivos principales:
+1. **Conflictos de dependencias multilib (`i386`):** La habilitación de paquetes de 32 bits entra en conflicto con librerías del sistema base de 64 bits (como `libabsl` y paquetes de entorno de escritorio como LibreOffice o GIMP), provocando errores de resolución en `apt`.
+2. **Paquetes virtuales sin candidato:** En ramas en desarrollo como `Forky`, los metapaquetes `wine` y `wine64` pueden aparecer como virtuales sin proveedor directo en los repositorios estándar.
+
+### ✅ Solución Recomendada: Wine Aislado (WoW64) mediante Flatpak
+Para evitar romper dependencias del sistema operativo y ejecutar binarios de 32 bits sin instalar librerías `i386` en el host, se utiliza **Flatpak** con la rama **WoW64** de Wine (`wow64-24.08`).
+
+---
+
+### Paso 1: Limpiar repositorios externos previos (Opcional)
+Si intentaste instalar WineHQ previamente y tienes repositorios externos generando conflictos, elimínalos antes de continuar:
+
+```bash
+sudo rm -f /etc/apt/sources.list.d/*winehq*
+sudo rm -f /etc/apt/keyrings/*winehq* /usr/share/keyrings/*winehq*
+sudo apt update
